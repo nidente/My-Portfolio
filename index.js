@@ -55,22 +55,24 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // ============ STICKY CTA VISIBILITY (OPTIMIZED) ============
+    // ============ STICKY CTA VISIBILITY (ALWAYS ON, HIDE AT CONTACT) ============
     if (stickyCta && contactSection) {
       const contactRect = contactSection.getBoundingClientRect();
       const isContactVisible = contactRect.top < window.innerHeight * 0.7;
 
-      // Show sticky CTA right away AND contact not visible
-      // Appears after 80px, disappears when contact is approaching
-      if (window.scrollY > 80 && !isContactVisible) {
-        if (!stickyCta.classList.contains("show")) {
-          stickyCta.classList.add("show");
-        }
-      } else {
+      // Hide sticky CTA when contact section is visible
+      if (isContactVisible) {
         stickyCta.classList.remove("show");
+      } else {
+        stickyCta.classList.add("show");
       }
     }
   });
+
+  // ============ INITIALIZE STICKY CTA VISIBLE ============
+  if (stickyCta) {
+    stickyCta.classList.add("show");
+  }
 
   // ============ STICKY CTA ANCHOR CLICK ============
   if (stickyCta) {
@@ -80,6 +82,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const formInput = document.getElementById("first-name");
         if (formInput) setTimeout(() => formInput.focus(), 500);
       }
+    });
+
+    // Hide sticky CTA on click (optional - auto-hide after navigation)
+    stickyCta.addEventListener("click", () => {
+      stickyCta.classList.remove("show");
     });
   }
 
