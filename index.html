@@ -3,38 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Aziz Landoulsi | Portfolio</title>
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
       window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
     </script>
     <script defer src="/_vercel/insights/script.js"></script>
+        <script defer src="index.js"></script>
 </head>
 <body>
+
+<div class="animated-bg" aria-hidden="true">
+    <!-- Gradient layers -->
+    <div class="gradient-layer grad1"></div>
+    <div class="gradient-layer grad2"></div>
+    <div class="gradient-layer grad3"></div>
+    <div class="gradient-layer grad4"></div>
+    
+    <!-- Organic blobs -->
+    <span class="blob blob1"></span>
+    <span class="blob blob2"></span>
+    <span class="blob blob3"></span>
+    
+    <!-- Geometric shapes -->
+    <div class="geo-shape shape1"></div>
+    <div class="geo-shape shape2"></div>
+    <div class="geo-shape shape3"></div>
+    <div class="geo-shape shape4"></div>
+    
+    <!-- Glow elements -->
+    <div class="glow glow1"></div>
+    <div class="glow glow2"></div>
+    <div class="glow glow3"></div>
+    
+    <!-- Particle dots -->
+    <div class="particle-system">
+        <div class="particle p1"></div>
+        <div class="particle p2"></div>
+        <div class="particle p3"></div>
+        <div class="particle p4"></div>
+        <div class="particle p5"></div>
+    </div>
+</div>
 
 <div class="navbar">
 
     <div class="name">
-    <h1>Landoulsi</h1>
+    <h1>Welcome</h1>
 </div>
 
-<div class="contact">
-    <p>About me</p>
-    <p>Services</p>
-    <p>Contact me</p>
-</div>    
+<nav class="contact">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+</nav>
     
 </div>
 
-<div class="section1">
+<div class="section1" id="home">
     <div class="section1-1">
         <div class="section1-1-1">
             <h1>Hi, I am <br> Landoulsi Aziz</h1>
             <p>This is a brief introduction about myself and my work.</p>
         </div>
         <div class="section1-1-2">
-            <button class="btn1">Download CV</button>
-            <button class="btn2">Learn more</button>
+            <button class="btn1" id="download-resume-btn">Download Resume</button>
+            <a class="btn2" href="#more-about">Learn more</a>
         </div>
     </div>
     <div class="section1-2">
@@ -42,35 +80,58 @@
     </div>
 </div>
 
-<div class="section2">
+<div class="section2" id="about">
     <div class="section2-1">
         <h1>About </h1>
-        <p>I like learning by doing, trying out ideas, and watching a project take shape step by step.
-           I see the web as a place to build, experiment, and learn through real projects. 
-           This portfolio reflects my journey, my projects, and the way I approach digital work.
+        <p>Hi, I’m Aziz Landoulsi. I study Management Information Systems (MIAGE) and I’m particularly interested in Business Intelligence, data analysis, and digital technologies. 
+I like building practical projects that transform ideas and data into useful tools and insights. 
+This portfolio presents my work, my projects, and the skills I’m developing in technology and data.
         </p>
-    </div>
-    <div class="section2-2">
-        <div class="cercle-group">
-            <div class="cercle"><div class="innercercle"></div></div>
-            <div class="textcercle"><h3>Email Adress</h3>aziz.v212a@gmail.com</div>
-        </div>
-        <div class="cercle-group">
-            <div class="cercle"><div class="innercercle"></div></div>
-            <div class="textcercle"><h3>LinkedIn</h3><a class="lien-linkedin" href="https://www.linkedin.com/in/aziz-landoulsi-9980191a2/">See Profile</a></div>
-        </div>
-        <div class="cercle-group">
-            <div class="cercle"><div class="innercercle"></div></div>
-            <div class="textcercle"><h3>Phone number</h3>+33 7 45 47 37 54</div>
-        </div>
-        <div class="cercle-group">
-            <div class="cercle"><div class="innercercle"></div></div>
-            <div class="textcercle"><h3>Adress</h3>199 Promenade des Anglais, Nice 06000</div>
-        </div>
     </div>
 </div>
 
-<h1 class="section3-titre">What I do</h1>
+<h1 class="section4-titre" id="skills">Skills</h1>
+<p class="section4-subtitle">Technologies and methods I use to design, build, and deliver digital products.</p>
+<div class="section4">
+    <article class="skill-card">
+        <h3>Backend & Languages</h3>
+        <div class="skill-tags">
+            <span><i class="devicon-python-plain"></i>Python</span><span><i class="devicon-java-plain"></i>Java</span><span><i class="devicon-kotlin-plain"></i>Kotlin</span><span><i class="devicon-c-plain"></i>C</span><span><i class="devicon-r-plain"></i>R</span><span><i class="devicon-mysql-plain"></i>SQL</span><span><i class="devicon-php-plain"></i>PHP</span><span><i class="devicon-nodejs-plain"></i>Node.js</span>
+        </div>
+    </article>
+    <article class="skill-card">
+        <h3>Frontend & Web</h3>
+        <div class="skill-tags">
+            <span><i class="devicon-html5-plain"></i>HTML5</span><span><i class="devicon-css3-plain"></i>CSS3</span><span><i class="devicon-javascript-plain"></i>JavaScript</span><span><i class="devicon-typescript-plain"></i>TypeScript</span><span><i class="devicon-babylon-plain"></i>Babylon.js</span><span><i class="devicon-markdown-original"></i>Markdown</span>
+        </div>
+    </article>
+    <article class="skill-card">
+        <h3>Data & BI</h3>
+        <div class="skill-tags">
+            <span><i class="devicon-powerbi-plain"></i>Power BI</span><span><i class="devicon-mongodb-plain"></i>MongoDB</span><span><i class="devicon-oracle-plain"></i>Oracle</span><span><i class="devicon-mysql-plain"></i>MySQL</span>
+        </div>
+    </article>
+    <article class="skill-card">
+        <h3>Tools</h3>
+        <div class="skill-tags">
+            <span><i class="devicon-git-plain"></i>Git</span><span><i class="devicon-github-plain"></i>GitHub</span><span><i class="devicon-phpmyadmin-plain"></i>phpMyAdmin</span><span><i class="devicon-vscode-plain"></i>Vscode</span><span><i class="devicon-intellij-plain"></i>IntelliJ IDEA</span>
+        </div>
+    </article>
+    <article class="skill-card">
+        <h3>Management</h3>
+        <div class="skill-tags">
+            <span><i class="devicon-trello-plain"></i>Agile</span><span><i class="devicon-jira-plain"></i>Scrum</span><span><i class="devicon-bitbucket-plain"></i>Kanban</span><span>Communication</span><span>UML</span><span>Design Pattern</span><span>Marketing</span><span>Market Research</span>
+        </div>
+    </article>
+    <article class="skill-card">
+        <h3>Soft Skills</h3>
+        <div class="skill-tags">
+            <span>Teamwork</span><span>Problem Solving</span><span>Adaptability</span><span>Critical Thinking</span><span>Inclusive Management</span><span>Organization</span>
+        </div>
+    </article>
+</div>
+
+<h1 class="section3-titre" id="projects">Projects</h1>
 <div class="section3">
     <div class="section3-1"><div class="section3-1-1"><img src="assets/img/Vector.svg" alt=""></div><p>Software
 Development</p></div>
@@ -79,22 +140,63 @@ Development</p></div>
     <div class="section3-1"><div class="section3-1-1"><img src="assets/img/Web.svg" alt=""></div><p>Web Design</p></div>
 </div>
 
-<h1 class="section4-titre">My Skills</h1>
-<div class="section4">
-    <div class="language">15%<br> Html,CSS</div>
-    <div class="language">15%<br>Javascript,PHP</div>
-    <div class="language">40%<br>Python,R,Power-BI,SGBD</div>
-    <div class="language">30%<br>JAVA,C,Kotlin</div>
+<h1 class="section35-titre" id="more-about">More About Me</h1>
+<div class="section35">
+    <article class="about-more-card">
+    <h3>Education</h3>
+    <p>My interest in technology grew from a strong foundation in mathematics during my Baccalauréat in Economics, Mathematics and Social Sciences. 
+A discovery internship in a fintech company later introduced me to the role of data and digital systems in finance. 
+Today, I am a third-year MIAGE (Management Information Systems) student, exploring how technology and data can support business decision-making.
+</p>
+    </article>
+
+    <article class="about-more-card">
+    <h3>What drives me</h3>
+    <p>I enjoy building solutions that create real value and improve over time. I am especially interested in Business Intelligence and data analysis, and in how technology can transform raw data into meaningful insights that support better decision-making. Turning ideas into practical applications and continuously improving them is what motivates me the most.</p>
+    </article>
+
+    <article class="about-more-card">
+    <h3>Passions</h3>
+    <p>Besides coding, I am passionate about finance and economic analysis, particularly understanding how markets and economic trends impact businesses and technology. <br>I also have a strong interest in sports: I play padel at a semi-professional level and am currently ranked within the top 15k players in France. Fitness is also an important part of my routine, helping me stay disciplined and focused in both sports and projects.</p>
+    </article>
 </div>
 
-<h1 class="section5-titre">Get in Touch</h1>
-<div class="section5">
-    <div class="section5-1"><input type="text" placeholder="First Name"></div>
-    <div class="section5-1"><input type="text" placeholder="Last Name"></div>
-    <div class="section5-1"><input type="email" placeholder="Email"></div>
-    <div class="section5-1"><input type="text" placeholder="Phone Number"></div>
-    <div class="section5-1"><textarea name="message" id="message" placeholder="Your Message"></textarea></div>
-    <button class="btn-submit">Submit now</button>
+<h1 class="section5-titre" id="contact">Get in Touch</h1>
+<form class="section5" id="contact-form">
+    <div class="section5-1"><input type="text" id="first-name" name="first_name" placeholder="First Name" required></div>
+    <div class="section5-1"><input type="text" id="last-name" name="last_name" placeholder="Last Name" required></div>
+    <div class="section5-1"><input type="email" id="email" name="user_email" placeholder="Email" required></div>
+    <div class="section5-1"><input type="tel" id="phone" name="phone" placeholder="Phone Number"></div>
+    <div class="section5-1"><textarea name="message" id="message" placeholder="Your Message" required></textarea></div>
+    <button type="submit" class="btn-submit">Submit now</button>
+    <div id="form-feedback" class="form-feedback"></div>
+</form>
+
+<div class="contact-ribbon">
+    <div class="contact-pill">
+        <img class="contact-pill-logo logo-mail" src="assets/img/mail.png" alt="Email logo">
+        <div class="contact-pill-text"><span>Email</span><strong>landoulsi.aziz@outlook.com</strong></div>
+    </div>
+    <a class="contact-pill" href="https://www.linkedin.com/in/aziz-landoulsi-9980191a2/">
+        <img class="contact-pill-logo" src="assets/img/linkedin.png" alt="LinkedIn logo">
+        <div class="contact-pill-text"><span>LinkedIn</span><strong>See profile</strong></div>
+    </a>
+    <div class="contact-pill">
+        <img class="contact-pill-logo" src="assets/img/whatsapp.png" alt="Phone logo">
+        <div class="contact-pill-text"><span>Phone</span><strong>+33 7 45 47 37 54</strong></div>
+    </div>
+    <div class="contact-pill">
+        <img class="contact-pill-logo" src="assets/img/maps.png" alt="Address logo">
+        <div class="contact-pill-text"><span>Address</span><strong>Nice - Paris - Tunis</strong></div>
+    </div>
+    <a class="contact-pill" href="https://github.com/nidente">
+        <img class="contact-pill-logo logo-github" src="assets/img/github.png" alt="GitHub logo">
+        <div class="contact-pill-text"><span>GitHub</span><strong>github.com/nidente</strong></div>
+    </a>
+    <a class="contact-pill" href="https://discord.com/users/544979490317664266">
+        <img class="contact-pill-logo logo-discord" src="assets/img/discord.png" alt="Discord logo">
+        <div class="contact-pill-text"><span>Discord</span><strong>Add me</strong></div>
+    </a>
 </div>
 
 <img class="copyright" src="assets/img/Landoulsi_copyright.svg" alt="Copyright">
