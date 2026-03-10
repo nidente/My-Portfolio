@@ -1,4 +1,110 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const navbar = document.querySelector(".navbar");
+  const menuToggle = document.getElementById("menu-toggle");
+  const navLinks = document.querySelectorAll(".contact a");
+  const scrollProgressBar = document.getElementById("scroll-progress");
+  const floatingActions = document.getElementById("floating-actions");
+  const floatToggle = document.getElementById("float-toggle");
+  const stickyCta = document.getElementById("sticky-cta");
+  const contactSection = document.getElementById("contact");
+
+  // ============ FLOATING ACTIONS TOGGLE ============
+  if (floatToggle && floatingActions) {
+    floatToggle.addEventListener("click", () => {
+      const isOpen = floatingActions.classList.toggle("show");
+      floatToggle.classList.toggle("active", isOpen);
+      floatToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    // Close menu when clicking on an action link
+    floatingActions.querySelectorAll(".float-action").forEach((link) => {
+      link.addEventListener("click", () => {
+        floatingActions.classList.remove("show");
+        floatToggle.classList.remove("active");
+        floatToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener("click", (e) => {
+      if (
+        !floatToggle.contains(e.target) &&
+        !floatingActions.contains(e.target)
+      ) {
+        floatingActions.classList.remove("show");
+        floatToggle.classList.remove("active");
+        floatToggle.setAttribute("aria-expanded", "false");
+      }
+    });
+  }
+
+  // ============ SCROLL PROGRESS BAR ============
+  window.addEventListener("scroll", () => {
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrolled = (window.scrollY / scrollHeight) * 100;
+    if (scrollProgressBar) {
+      scrollProgressBar.style.width = scrolled + "%";
+    }
+
+    // ============ NAVBAR SCROLL STATE (DARKER) ============
+    if (navbar) {
+      if (window.scrollY > 40) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    }
+
+    // ============ STICKY CTA VISIBILITY (OPTIMIZED) ============
+    if (stickyCta && contactSection) {
+      const contactRect = contactSection.getBoundingClientRect();
+      const isContactVisible = contactRect.top < window.innerHeight * 0.7;
+
+      // Show sticky CTA right away AND contact not visible
+      // Appears after 80px, disappears when contact is approaching
+      if (window.scrollY > 80 && !isContactVisible) {
+        if (!stickyCta.classList.contains("show")) {
+          stickyCta.classList.add("show");
+        }
+      } else {
+        stickyCta.classList.remove("show");
+      }
+    }
+  });
+
+  // ============ STICKY CTA ANCHOR CLICK ============
+  if (stickyCta) {
+    stickyCta.addEventListener("click", () => {
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: "smooth" });
+        const formInput = document.getElementById("first-name");
+        if (formInput) setTimeout(() => formInput.focus(), 500);
+      }
+    });
+  }
+
+  // ============ HAMBURGER MENU TOGGLE ============
+  if (navbar && menuToggle) {
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navbar.classList.toggle("is-open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        navbar.classList.remove("is-open");
+        menuToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 767) {
+        navbar.classList.remove("is-open");
+        menuToggle.setAttribute("aria-expanded", "false");
+      }
+    });
+  }
+
   // Resume Download Functionality
   const downloadButton = document.getElementById("download-resume-btn");
 
@@ -45,6 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
+  // ============ ENHANCED FORM SUBMISSION ============
   contactForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -62,8 +169,10 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     // Disable button and show loading state
+    const originalText = submitButton.textContent;
     submitButton.disabled = true;
-    submitButton.textContent = "Sending...";
+    submitButton.classList.add("loading");
+    submitButton.innerHTML = '<span class="loader"></span>Sending...';
     formFeedback.className = "form-feedback";
     formFeedback.textContent = "";
     formFeedback.style.display = "none";
@@ -83,28 +192,32 @@ document.addEventListener("DOMContentLoaded", () => {
       )
       .then(() => {
         formFeedback.className = "form-feedback success";
-        formFeedback.textContent = "✓ Message sent successfully!";
+        formFeedback.innerHTML = '✓ Message sent successfully!';
         formFeedback.style.display = "block";
+        formFeedback.scrollIntoView({ behavior: "smooth", block: "nearest" });
         contactForm.reset();
       })
       .catch(() => {
         // Owner notification succeeded; auto-reply failed
         formFeedback.className = "form-feedback success";
-        formFeedback.textContent = "✓ Message sent successfully!";
+        formFeedback.innerHTML = '✓ Message sent successfully!';
         formFeedback.style.display = "block";
+        formFeedback.scrollIntoView({ behavior: "smooth", block: "nearest" });
         contactForm.reset();
       });
     })
     .catch((error) => {
       console.error("EmailJS Error:", error);
       formFeedback.className = "form-feedback error";
-      formFeedback.textContent = "✗ Failed to send message. Please try again.";
+      formFeedback.innerHTML = '✗ Failed to send message. Please try again.';
       formFeedback.style.display = "block";
+      formFeedback.scrollIntoView({ behavior: "smooth", block: "nearest" });
     })
     .finally(() => {
       // Re-enable button
       submitButton.disabled = false;
-      submitButton.textContent = "Submit now";
+      submitButton.classList.remove("loading");
+      submitButton.innerHTML = originalText;
     });
   });
 });

@@ -48,13 +48,21 @@
     </div>
 </div>
 
-<div class="navbar">
+<div class="scroll-progress-bar" id="scroll-progress" aria-hidden="true"></div>
+
+<div class="navbar" id="navbar">
 
     <div class="name">
     <h1>Welcome</h1>
 </div>
 
-<nav class="contact">
+<button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation menu" aria-controls="main-nav" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+</button>
+
+<nav class="contact" id="main-nav">
     <a href="#home">Home</a>
     <a href="#about">About</a>
     <a href="#skills">Skills</a>
@@ -63,6 +71,29 @@
 </nav>
     
 </div>
+
+<div class="floating-actions" id="floating-actions" aria-label="Quick contact actions">
+    <a href="https://wa.me/33745473754" class="float-action float-whatsapp" target="_blank" rel="noopener noreferrer" title="WhatsApp">
+        <img src="assets/img/whatsapp.png" alt="WhatsApp">
+    </a>
+    <a href="https://www.linkedin.com/in/aziz-landoulsi-9980191a2/" class="float-action float-linkedin" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+        <img src="assets/img/linkedin.png" alt="LinkedIn">
+    </a>
+    <a href="https://github.com/nidente" class="float-action float-github" target="_blank" rel="noopener noreferrer" title="GitHub">
+        <img src="assets/img/github.png" alt="GitHub">
+    </a>
+</div>
+
+<button class="float-toggle" id="float-toggle" aria-label="Toggle quick contact actions" aria-expanded="false">
+    <span class="toggle-icon">+</span>
+</button>
+
+<button class="sticky-cta" id="sticky-cta" aria-label="Go to contact section">
+    <span>Contact me</span>
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M10 5v10m5-5H5"/>
+    </svg>
+</button>
 
 <div class="section1" id="home">
     <div class="section1-1">
@@ -163,13 +194,13 @@ Today, I am a third-year MIAGE (Management Information Systems) student, explori
 
 <h1 class="section5-titre" id="contact">Get in Touch</h1>
 <form class="section5" id="contact-form">
-    <div class="section5-1"><input type="text" id="first-name" name="first_name" placeholder="First Name" required></div>
-    <div class="section5-1"><input type="text" id="last-name" name="last_name" placeholder="Last Name" required></div>
-    <div class="section5-1"><input type="email" id="email" name="user_email" placeholder="Email" required></div>
-    <div class="section5-1"><input type="tel" id="phone" name="phone" placeholder="Phone Number"></div>
-    <div class="section5-1"><textarea name="message" id="message" placeholder="Your Message" required></textarea></div>
-    <button type="submit" class="btn-submit">Submit now</button>
-    <div id="form-feedback" class="form-feedback"></div>
+    <div class="section5-1"><input type="text" id="first-name" name="first_name" placeholder="First Name" required aria-label="First Name"></div>
+    <div class="section5-1"><input type="text" id="last-name" name="last_name" placeholder="Last Name" required aria-label="Last Name"></div>
+    <div class="section5-1"><input type="email" id="email" name="user_email" placeholder="Email" required aria-label="Email Address"></div>
+    <div class="section5-1"><input type="tel" id="phone" name="phone" placeholder="Phone Number" aria-label="Phone Number"></div>
+    <div class="section5-1"><textarea name="message" id="message" placeholder="Your Message" required aria-label="Message"></textarea></div>
+    <button type="submit" class="btn-submit" aria-label="Submit contact form">Submit now</button>
+    <div id="form-feedback" class="form-feedback" role="alert" aria-live="polite"></div>
 </form>
 
 <div class="contact-ribbon">
@@ -199,6 +230,12 @@ Today, I am a third-year MIAGE (Management Information Systems) student, explori
     </a>
 </div>
 
-<img class="copyright" src="assets/img/Landoulsi_copyright.svg" alt="Copyright">
+<footer class="footer">
+    <div class="footer-content">
+        <p>&copy; 2026 Aziz Landoulsi — Designed and developed by Aziz Landoulsi.</p>
+        <p>All rights reserved.</p>
+    </div>
+</footer>
+
 </body>
 </html>
