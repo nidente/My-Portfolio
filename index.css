@@ -714,7 +714,7 @@ img {
     color: var(--text-main);
     font-size: clamp(22px, 3vw, 29px);
     line-height: 1.2;
-    margin: 18px 0 0;
+    margin: 16px 0 0;
     font-weight: 700;
 }
 
@@ -727,12 +727,24 @@ img {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
-    padding: 30px 24px;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 28px 24px 24px;
     position: relative;
     overflow: hidden;
+    isolation: isolate;
     transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
     animation: revealCard 0.8s ease both;
+}
+
+.project-card--progress::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 20%, rgba(245, 158, 11, 0.18) 50%, transparent 80%);
+    transform: translateX(-120%);
+    animation: projectSweep 3.2s ease-in-out infinite;
+    z-index: 0;
 }
 
 .section3-1:hover{
@@ -757,6 +769,53 @@ img {
     transform: scale(1.15);
 }
 
+.project-status,
+.project-track,
+.section3-1 p,
+.section3-1-1 {
+    position: relative;
+    z-index: 1;
+}
+
+.project-status {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 15px;
+    border-radius: 999px;
+    border: 1px solid rgba(251, 191, 36, 0.55);
+    background: linear-gradient(135deg, rgba(180, 83, 9, 0.55), rgba(245, 158, 11, 0.38));
+    color: #fffbeb;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    box-shadow: 0 8px 20px rgba(245, 158, 11, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+    overflow: hidden;
+    animation: statusButtonFloat 2.8s ease-in-out infinite;
+}
+
+.project-status::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, transparent 18%, rgba(255, 255, 255, 0.45) 48%, transparent 78%);
+    transform: translateX(-130%);
+    animation: statusShine 3s ease-in-out infinite;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #f59e0b;
+    box-shadow: 0 0 0 rgba(245, 158, 11, 0.65);
+    animation: statusPulse 1.8s ease-out infinite;
+}
+
 .section3-1-1{
     height: 78px;
     width: 78px;
@@ -776,6 +835,14 @@ img {
     filter: brightness(1.1);
 }
 
+.project-track {
+    margin-top: auto;
+    color: #94a3b8;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
 .section3-1:nth-child(2) {
     animation-delay: 0.12s;
 }
@@ -792,6 +859,52 @@ img {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes statusPulse {
+    0% {
+        transform: scale(0.9);
+        box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.55);
+    }
+    70% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 12px rgba(245, 158, 11, 0);
+    }
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
+    }
+}
+
+@keyframes projectSweep {
+    0%,
+    100% {
+        transform: translateX(-120%);
+    }
+    50% {
+        transform: translateX(120%);
+    }
+}
+
+@keyframes statusButtonFloat {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-2px);
+    }
+}
+
+@keyframes statusShine {
+    0%,
+    100% {
+        transform: translateX(-130%);
+    }
+    45%,
+    70% {
+        transform: translateX(130%);
     }
 }
 
@@ -1713,6 +1826,8 @@ img {
         width: 100%;
         max-width: 320px;
         margin: 0 auto;
+        min-height: 250px;
+        padding-top: 64px;
     }
 
     .section4 {
