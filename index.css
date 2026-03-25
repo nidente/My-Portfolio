@@ -841,6 +841,9 @@ img {
 .project-action-btn--github img {
     width: 34px;
     height: 34px;
+    filter: none;
+    object-fit: cover;
+    clip-path: circle(38% at 50% 50%);
 }
 
 .project-media--retro .project-action-btn--github img {
@@ -1925,6 +1928,17 @@ img {
         gap: 16px;
     }
 
+    .project-overlay-actions {
+        top: auto;
+        left: auto;
+        right: 10px;
+        bottom: 10px;
+        transform: none;
+        opacity: 1;
+        pointer-events: auto;
+        gap: 8px;
+    }
+
     .section3-1 {
         width: 100%;
         max-width: 420px;
@@ -2035,6 +2049,12 @@ img {
 
     .section3-titre, .section35-titre, .section4-titre, .section5-titre {
         font-size: 24px;
+    }
+
+    .project-overlay-actions {
+        right: 8px;
+        bottom: 8px;
+        gap: 6px;
     }
 
     .project-media {
