@@ -712,24 +712,20 @@ img {
 
 .section3-1 p{
     color: var(--text-main);
-    font-size: clamp(22px, 3vw, 29px);
+    font-size: clamp(28px, 3vw, 36px);
     line-height: 1.2;
-    margin: 16px 0 0;
+    margin: 0;
     font-weight: 700;
 }
 
 .section3-1{
-    min-height: 235px;
-    border: 1px solid var(--line-soft);
+    min-height: 430px;
+    border: 1px solid rgba(30, 144, 255, 0.7);
     border-radius: 22px;
-    background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(2, 6, 23, 0.82));
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.38);
+    background: linear-gradient(160deg, rgba(6, 18, 40, 0.96), rgba(8, 26, 49, 0.94));
+    box-shadow: 0 18px 40px rgba(0, 4, 18, 0.45);
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 10px;
-    padding: 28px 24px 24px;
     position: relative;
     overflow: hidden;
     isolation: isolate;
@@ -748,43 +744,135 @@ img {
 }
 
 .section3-1:hover{
-    transform: translateY(-9px);
-    box-shadow: 0 24px 44px rgba(34, 211, 238, 0.22);
-    border-color: rgba(103, 232, 249, 0.5);
+    transform: translateY(-10px);
+    box-shadow: 0 24px 48px rgba(0, 5, 20, 0.55), 0 0 0 1px rgba(30, 144, 255, 0.65) inset;
+    border-color: rgba(56, 189, 248, 0.95);
 }
 
-.section3-1::after {
+.project-media {
+    position: relative;
+    height: 200px;
+    border-bottom: 1px solid rgba(56, 189, 248, 0.26);
+    overflow: hidden;
+}
+
+.project-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(1.1) brightness(0.82);
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.section3-1:hover .project-media img {
+    transform: scale(1.04);
+    filter: saturate(1.2) brightness(0.92);
+}
+
+.project-media::after {
     content: "";
     position: absolute;
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(34, 211, 238, 0.2), transparent 65%);
-    top: -45px;
-    right: -30px;
-    transition: transform 0.35s ease;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.08) 0%, rgba(5, 10, 27, 0.82) 100%);
 }
 
-.section3-1:hover::after {
-    transform: scale(1.15);
+.project-media--placeholder {
+    background: radial-gradient(circle at 20% 20%, rgba(34, 211, 238, 0.2), transparent 58%),
+        linear-gradient(140deg, rgba(8, 20, 44, 0.95), rgba(8, 26, 49, 0.9));
+}
+
+.project-media--placeholder img {
+    object-fit: contain;
+    padding: 42px;
+    filter: brightness(1.15);
+}
+
+.project-media--retro img {
+    object-fit: contain;
+    padding: 8px;
+}
+
+.project-overlay-actions {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 12px;
+    z-index: 2;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+
+.section3-1:hover .project-overlay-actions,
+.section3-1:focus-within .project-overlay-actions {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.project-action-btn {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    border: none;
+    background: #0ea5e9;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 10px 26px rgba(14, 165, 233, 0.45);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.project-action-btn:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 14px 30px rgba(14, 165, 233, 0.6);
+}
+
+.project-action-btn img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    filter: brightness(0) saturate(100%);
+}
+
+.project-action-btn--github img {
+    width: 34px;
+    height: 34px;
+}
+
+.project-media--retro .project-action-btn--github img {
+    width: 40px;
+    height: 40px;
+}
+
+.project-body {
+    position: relative;
+    z-index: 1;
+    padding: 20px 24px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    height: calc(100% - 200px);
 }
 
 .project-status,
 .project-track,
-.section3-1 p,
-.section3-1-1 {
+.project-description,
+.section3-1 p {
     position: relative;
     z-index: 1;
 }
 
 .project-status {
-    position: absolute;
-    top: 16px;
-    right: 16px;
+    position: static;
+    width: fit-content;
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    padding: 9px 15px;
+    gap: 8px;
+    padding: 7px 12px;
     border-radius: 999px;
     border: 1px solid rgba(251, 191, 36, 0.55);
     background: linear-gradient(135deg, rgba(180, 83, 9, 0.55), rgba(245, 158, 11, 0.38));
@@ -795,6 +883,8 @@ img {
     text-transform: uppercase;
     box-shadow: 0 8px 20px rgba(245, 158, 11, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.22);
     overflow: hidden;
+    white-space: normal;
+    line-height: 1.2;
     animation: statusButtonFloat 2.8s ease-in-out infinite;
 }
 
@@ -807,40 +897,39 @@ img {
     animation: statusShine 3s ease-in-out infinite;
 }
 
+.project-status--live {
+    border: 1px solid rgba(52, 211, 153, 0.65);
+    background: linear-gradient(135deg, rgba(6, 78, 59, 0.62), rgba(16, 185, 129, 0.36));
+    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.status-dot--live {
+    background: #34d399;
+    box-shadow: 0 0 0 rgba(52, 211, 153, 0.65);
+}
+
 .status-dot {
-    width: 10px;
-    height: 10px;
+    width: 9px;
+    height: 9px;
     border-radius: 50%;
     background: #f59e0b;
     box-shadow: 0 0 0 rgba(245, 158, 11, 0.65);
     animation: statusPulse 1.8s ease-out infinite;
 }
 
-.section3-1-1{
-    height: 78px;
-    width: 78px;
-    border-radius: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background: linear-gradient(160deg, rgba(34, 211, 238, 0.22), rgba(2, 6, 23, 0.2));
-    backdrop-filter: blur(5px);
-}
-
-.section3-1-1 img {
-    width: 42px;
-    height: 42px;
-    object-fit: contain;
-    filter: brightness(1.1);
-}
-
 .project-track {
     margin-top: auto;
-    color: #94a3b8;
+    color: #7dd3fc;
     font-size: 13px;
     letter-spacing: 0.04em;
     text-transform: uppercase;
+}
+
+.project-description {
+    color: #d3e5f5;
+    font-size: 18px;
+    line-height: 1.5;
+    margin-top: 0;
 }
 
 .section3-1:nth-child(2) {
@@ -849,6 +938,14 @@ img {
 
 .section3-1:nth-child(3) {
     animation-delay: 0.24s;
+}
+
+.section3-1:nth-child(4) {
+    animation-delay: 0.36s;
+}
+
+.section3-1:nth-child(5) {
+    animation-delay: 0.48s;
 }
 
 @keyframes revealCard {
@@ -1590,6 +1687,11 @@ img {
     .menu-toggle {
         -webkit-tap-highlight-color: rgba(59, 130, 246, 0.2);
     }
+
+    .project-overlay-actions {
+        opacity: 1;
+        pointer-events: auto;
+    }
 }
 
 /* Respect user's motion preferences */
@@ -1818,16 +1920,60 @@ img {
     }
 
     .section3 {
+        width: 94%;
         grid-template-columns: 1fr;
         gap: 16px;
     }
 
     .section3-1 {
         width: 100%;
-        max-width: 320px;
+        max-width: 420px;
         margin: 0 auto;
-        min-height: 250px;
-        padding-top: 64px;
+        min-height: unset;
+    }
+
+    .project-media {
+        height: 180px;
+    }
+
+    .project-body {
+        height: auto;
+        padding: 16px 16px 18px;
+        gap: 10px;
+    }
+
+    .section3-1 p {
+        font-size: clamp(22px, 7vw, 30px);
+    }
+
+    .project-description {
+        font-size: 15px;
+        line-height: 1.45;
+    }
+
+    .project-status {
+        font-size: 10px;
+        padding: 6px 10px;
+    }
+
+    .project-action-btn {
+        width: 48px;
+        height: 48px;
+    }
+
+    .project-action-btn img {
+        width: 22px;
+        height: 22px;
+    }
+
+    .project-action-btn--github img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .project-media--retro .project-action-btn--github img {
+        width: 34px;
+        height: 34px;
     }
 
     .section4 {
@@ -1889,6 +2035,19 @@ img {
 
     .section3-titre, .section35-titre, .section4-titre, .section5-titre {
         font-size: 24px;
+    }
+
+    .project-media {
+        height: 160px;
+    }
+
+    .project-body {
+        padding: 14px 14px 16px;
+    }
+
+    .project-description {
+        font-size: 14px;
+        line-height: 1.4;
     }
 
     .section4-subtitle {
