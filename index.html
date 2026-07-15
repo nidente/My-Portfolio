@@ -1,328 +1,413 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aziz Landoulsi | Portfolio</title>
+    <title data-fr="Aziz Landoulsi | Portfolio" data-en="Aziz Landoulsi | Portfolio">Aziz Landoulsi | Portfolio</title>
+    <meta id="meta-description" name="description"
+          data-fr="Portfolio d'Aziz Landoulsi, étudiant MIAGE en développement, BI, data et support."
+          data-en="Aziz Landoulsi's portfolio, a MIAGE student in development, BI, data and support."
+          content="Portfolio d'Aziz Landoulsi, étudiant MIAGE en développement, BI, data et support.">
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
     <script>
       window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
     </script>
     <script defer src="/_vercel/insights/script.js"></script>
-        <script defer src="index.js"></script>
+    <script>
+      (function () {
+        try {
+          var lang = localStorage.getItem('lang') || (navigator.language || 'fr').slice(0, 2);
+          if (lang !== 'fr' && lang !== 'en') lang = 'fr';
+          var theme = localStorage.getItem('theme');
+          document.documentElement.lang = lang;
+          document.documentElement.dataset.pendingLang = lang;
+          if (theme === 'light' || theme === 'dark') {
+            document.documentElement.setAttribute('data-theme', theme);
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <script defer src="index.js"></script>
 </head>
 <body>
 
-<div class="animated-bg" aria-hidden="true">
-    <!-- Gradient layers -->
-    <div class="gradient-layer grad1"></div>
-    <div class="gradient-layer grad2"></div>
-    <div class="gradient-layer grad3"></div>
-    <div class="gradient-layer grad4"></div>
-    
-    <!-- Organic blobs -->
-    <span class="blob blob1"></span>
-    <span class="blob blob2"></span>
-    <span class="blob blob3"></span>
-    
-    <!-- Geometric shapes -->
-    <div class="geo-shape shape1"></div>
-    <div class="geo-shape shape2"></div>
-    <div class="geo-shape shape3"></div>
-    <div class="geo-shape shape4"></div>
-    
-    <!-- Glow elements -->
-    <div class="glow glow1"></div>
-    <div class="glow glow2"></div>
-    <div class="glow glow3"></div>
-    
-    <!-- Particle dots -->
-    <div class="particle-system">
-        <div class="particle p1"></div>
-        <div class="particle p2"></div>
-        <div class="particle p3"></div>
-        <div class="particle p4"></div>
-        <div class="particle p5"></div>
+<div class="animated-bg" aria-hidden="true" id="animated-bg">
+    <div class="rect-field" id="rect-field"></div>
+</div>
+
+<a class="skip-link" href="#main" data-fr="Aller au contenu" data-en="Skip to content">Aller au contenu</a>
+
+<div class="progress-bar" id="scroll-progress" aria-hidden="true"></div>
+
+<header class="nav" id="navbar">
+    <div class="wrap nav-inner">
+        <a class="nav-brand" href="#home">
+            <span class="nav-brand-mark">AL</span>
+            <span class="nav-brand-text">Aziz Landoulsi</span>
+        </a>
+
+        <nav class="nav-links" id="nav-links">
+            <a href="#home" data-fr="Accueil" data-en="Home">Accueil</a>
+            <a href="#about" data-fr="Présentation" data-en="About">Présentation</a>
+            <a href="#skills" data-fr="Compétences" data-en="Skills">Compétences</a>
+            <a href="#projects" data-fr="Projets" data-en="Projects">Projets</a>
+            <a href="#experience" data-fr="Parcours" data-en="Experience">Parcours</a>
+            <a href="#contact" data-fr="Contact" data-en="Contact">Contact</a>
+        </nav>
+
+        <div class="nav-controls">
+            <button class="lang-switch" id="lang-switch" data-active="fr" data-fr-aria-label="Passer le site en anglais" data-en-aria-label="Switch site to French" aria-label="Passer le site en anglais">
+                <span class="lang-opt" data-lang="fr">FR</span>
+                <span class="lang-opt" data-lang="en">EN</span>
+                <span class="lang-thumb"></span>
+            </button>
+            <button class="theme-switch" id="theme-switch" data-fr-aria-label="Changer de thème" data-en-aria-label="Toggle theme" aria-label="Changer de thème">
+                <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.6 4.6l1.7 1.7M17.7 17.7l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.6 19.4l1.7-1.7M17.7 6.3l1.7-1.7"/></svg>
+                <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z"/></svg>
+            </button>
+            <button class="menu-toggle" id="menu-toggle" type="button" data-fr-aria-label="Ouvrir le menu" data-en-aria-label="Open menu" aria-label="Ouvrir le menu" aria-controls="nav-links" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
     </div>
-</div>
+</header>
 
-<div class="scroll-progress-bar" id="scroll-progress" aria-hidden="true"></div>
+<main id="main">
 
-<div class="navbar" id="navbar">
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="home">
+        <div class="wrap hero-grid">
+            <div class="hero-copy">
+                <p class="eyebrow" data-fr="Développement · BI · Data · Support" data-en="Development · BI · Data · Support">Développement · BI · Data · Support</p>
+                <h1 data-fr="Guidé par la curiosité, porté par la technologie." data-en="Driven by curiosity, powered by technology.">Guidé par la curiosité, porté par la technologie.</h1>
+                <p class="hero-lede" data-fr="Étudiant en Master MIAGE à l'Université Côte d'Azur, passionné par l'informatique et les nouvelles technologies, je développe des solutions numériques en combinant développement logiciel, Business Intelligence, analyse de données et support technique. À travers mes projets et expériences, j'accompagne la conception de produits numériques, de la phase d'analyse et de développement jusqu'à leur mise en production." data-en="I'm a Master's student in Management Information Systems (MIAGE) at Université Côte d'Azur, passionate about computer science and emerging technologies. I build digital solutions that combine software development, Business Intelligence, data analysis and technical support. Through my projects and experience, I take part in building digital products, from analysis and development through to production.">Étudiant en Master MIAGE à l'Université Côte d'Azur, passionné par l'informatique et les nouvelles technologies, je développe des solutions numériques en combinant développement logiciel, Business Intelligence, analyse de données et support technique. À travers mes projets et expériences, j'accompagne la conception de produits numériques, de la phase d'analyse et de développement jusqu'à leur mise en production.</p>
 
-    <div class="name">
-    <h1>Welcome</h1>
-</div>
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="#projects" data-fr="Voir les projets" data-en="View projects">Voir les projets</a>
+                    <button class="btn btn-ghost" id="download-resume-btn" data-fr="Télécharger le CV" data-en="Download CV">Télécharger le CV</button>
+                </div>
 
-<button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation menu" aria-controls="main-nav" aria-expanded="false">
-    <span></span>
-    <span></span>
-    <span></span>
-</button>
+                <div class="hero-stats" aria-label="Points clés du portfolio">
+                    <div><strong data-count="5">0</strong><span data-fr="projets livrés" data-en="projects shipped">projets livrés</span></div>
+                    <div><strong data-count="2">0</strong><span data-fr="plateformes en ligne" data-en="live platforms">plateformes en ligne</span></div>
+                    <div><strong data-count="1">0</strong><span data-fr="focus&nbsp;: data &amp; web" data-en="focus: data &amp; web">focus&nbsp;: data &amp; web</span></div>
+                </div>
+            </div>
 
-<nav class="contact" id="main-nav">
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-</nav>
-    
-</div>
-
-<div class="floating-actions" id="floating-actions" aria-label="Quick contact actions">
-    <a href="https://wa.me/33745473754" class="float-action float-whatsapp" target="_blank" rel="noopener noreferrer" title="WhatsApp">
-        <img src="assets/img/whatsapp.png" alt="WhatsApp">
-    </a>
-    <a href="https://www.linkedin.com/in/aziz-landoulsi-9980191a2/" class="float-action float-linkedin" target="_blank" rel="noopener noreferrer" title="LinkedIn">
-        <img src="assets/img/linkedin.png" alt="LinkedIn">
-    </a>
-    <a href="https://github.com/nidente" class="float-action float-github" target="_blank" rel="noopener noreferrer" title="GitHub">
-        <img src="assets/img/github.png" alt="GitHub">
-    </a>
-</div>
-
-<button class="float-toggle" id="float-toggle" aria-label="Toggle quick contact actions" aria-expanded="false">
-    <span class="toggle-icon">+</span>
-</button>
-
-<button class="sticky-cta" id="sticky-cta" aria-label="Go to contact section">
-    <span>Contact me</span>
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M10 5v10m5-5H5"/>
-    </svg>
-</button>
-
-<div class="section1" id="home">
-    <div class="section1-1">
-        <div class="section1-1-1">
-            <span class="hero-kicker">MIAGE Student • Data, BI, Product</span>
-            <h1>Hi, I am <br> Landoulsi Aziz</h1>
-            <p>I design and build practical digital products that turn ideas and data into real, usable solutions.</p>
-            <div class="hero-metrics" aria-label="Portfolio highlights">
-                <span><strong>5+</strong> Projects shipped</span>
-                <span><strong>2</strong> Live platforms</span>
-                <span><strong>1</strong> Focus: BI + Web</span>
+            <div class="hero-media">
+                <div class="hero-media-frame">
+                    <img src="assets/img/profil.png" alt="Aziz Landoulsi">
+                </div>
             </div>
         </div>
-        <div class="section1-1-2">
-            <button class="btn1" id="download-resume-btn">Download Resume</button>
-            <a class="btn2" href="#more-about">Learn more</a>
-            <a class="btn3" href="#projects">View Projects</a>
-        </div>
-    </div>
-    <div class="section1-2">
-        <img src="assets/img/profil.png" alt="Profile Picture">
-    </div>
-</div>
+    </section>
 
-<div class="section2" id="about">
-    <div class="section2-1">
-        <h1>About </h1>
-        <p>Hi, I’m Aziz Landoulsi. I study Management Information Systems (MIAGE) and I’m particularly interested in Business Intelligence, data analysis, and digital technologies. 
-I like building practical projects that transform ideas and data into useful tools and insights. 
-This portfolio presents my work, my projects, and the skills I’m developing in technology and data.
-        </p>
-    </div>
-</div>
+    <!-- ============ ABOUT ============ -->
+    <section class="section about" id="about">
+        <div class="wrap about-grid">
+            <div class="section-head">
+                <span class="sec-num">01</span>
+                <h2 data-fr="Présentation" data-en="About">Présentation</h2>
+            </div>
+            <div>
+                <p class="about-lede" data-fr="Je m'appelle Aziz Landoulsi. En troisième année de MIAGE, je me situe au croisement de la gestion, de la donnée et du développement, là où une bonne architecture technique rencontre une vraie utilité métier. Je préfère construire des outils qui simplifient une décision plutôt que des démonstrations techniques sans usage. Ce portfolio réunit mes projets, mes compétences, et la façon dont j'aborde un problème&nbsp;: comprendre avant de coder." data-en="I'm Aziz Landoulsi, a third-year Management Information Systems (MIAGE) student working at the intersection of business, data and software, where solid technical architecture meets real business value. I care more about tools that simplify a real decision than technical demos without a purpose. This portfolio brings together my projects, my skills, and the way I approach a problem: understand it before I build it.">Je m'appelle Aziz Landoulsi. En troisième année de MIAGE, je me situe au croisement de la gestion, de la donnée et du développement, là où une bonne architecture technique rencontre une vraie utilité métier. Je préfère construire des outils qui simplifient une décision plutôt que des démonstrations techniques sans usage. Ce portfolio réunit mes projets, mes compétences, et la façon dont j'aborde un problème&nbsp;: comprendre avant de coder.</p>
 
-<h1 class="section4-titre" id="skills">Skills</h1>
-<p class="section4-subtitle">Technologies and methods I use to design, build, and deliver digital products.</p>
-<div class="section4">
-    <article class="skill-card">
-        <h3>Backend & Languages</h3>
-        <div class="skill-tags">
-            <span><i class="devicon-python-plain"></i>Python</span><span><i class="devicon-java-plain"></i>Java</span><span><i class="devicon-kotlin-plain"></i>Kotlin</span><span><i class="devicon-c-plain"></i>C</span><span><i class="devicon-r-plain"></i>R</span><span><i class="devicon-mysql-plain"></i>SQL</span><span><i class="devicon-php-plain"></i>PHP</span><span><i class="devicon-nodejs-plain"></i>Node.js</span>
-        </div>
-    </article>
-    <article class="skill-card">
-        <h3>Frontend & Web</h3>
-        <div class="skill-tags">
-            <span><i class="devicon-html5-plain"></i>HTML5</span><span><i class="devicon-css3-plain"></i>CSS3</span><span><i class="devicon-javascript-plain"></i>JavaScript</span><span><i class="devicon-typescript-plain"></i>TypeScript</span><span><i class="devicon-babylon-plain"></i>Babylon.js</span><span><i class="devicon-markdown-original"></i>Markdown</span>
-        </div>
-    </article>
-    <article class="skill-card">
-        <h3>Data & BI</h3>
-        <div class="skill-tags">
-            <span><i class="devicon-powerbi-plain"></i>Power BI</span><span><i class="devicon-mongodb-plain"></i>MongoDB</span><span><i class="devicon-oracle-plain"></i>Oracle</span><span><i class="devicon-mysql-plain"></i>MySQL</span>
-        </div>
-    </article>
-    <article class="skill-card">
-        <h3>Tools</h3>
-        <div class="skill-tags">
-            <span><i class="devicon-git-plain"></i>Git</span><span><i class="devicon-github-plain"></i>GitHub</span><span><i class="devicon-phpmyadmin-plain"></i>phpMyAdmin</span><span><i class="devicon-vscode-plain"></i>Vscode</span><span><i class="devicon-intellij-plain"></i>IntelliJ IDEA</span>
-        </div>
-    </article>
-    <article class="skill-card">
-        <h3>Management</h3>
-        <div class="skill-tags">
-            <span><i class="devicon-trello-plain"></i>Agile</span><span><i class="devicon-jira-plain"></i>Scrum</span><span><i class="devicon-bitbucket-plain"></i>Kanban</span><span>Communication</span><span>UML</span><span>Design Pattern</span><span>Marketing</span><span>Market Research</span>
-        </div>
-    </article>
-    <article class="skill-card">
-        <h3>Soft Skills</h3>
-        <div class="skill-tags">
-            <span>Teamwork</span><span>Problem Solving</span><span>Adaptability</span><span>Critical Thinking</span><span>Inclusive Management</span><span>Organization</span>
-        </div>
-    </article>
-</div>
-
-<h1 class="section3-titre" id="projects">Projects</h1>
-<div class="section3">
-    <article class="section3-1 project-card project-card--showcase">
-        <div class="project-media">
-            <img src="assets/img/valisp.png" alt="Valisp preview image">
-            <div class="project-overlay-actions" aria-label="Valisp links">
-                <a class="project-action-btn project-action-btn--github" href="https://github.com/nidente/Valisp" target="_blank" rel="noopener noreferrer" aria-label="Open Valisp source code on GitHub">
-                    <img src="assets/img/github.png" alt="GitHub">
-                </a>
+                <div class="quick-facts">
+                    <div>
+                        <span data-fr="Basé à" data-en="Based in">Basé à</span>
+                        <strong>Nice · Paris · Tunis</strong>
+                    </div>
+                    <div>
+                        <span data-fr="Focus" data-en="Focus">Focus</span>
+                        <strong>Data &amp; Business Intelligence</strong>
+                    </div>
+                    <div>
+                        <span data-fr="Disponibilité" data-en="Availability">Disponibilité</span>
+                        <strong data-fr="Stage / alternance, 2026" data-en="Internship / work-study, 2026">Stage / alternance, 2026</strong>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="project-body">
-            <span class="project-status project-status--live"><span class="status-dot status-dot--live" aria-hidden="true"></span>Source Code</span>
-            <p>Valisp</p>
-            <span class="project-description">Development of a C interpreter for a Lisp-like language (vaLisp), including memory management, data structures, and evaluation logic.</span>
-            <span class="project-track">Repository available</span>
-        </div>
-    </article>
+    </section>
 
-    <article class="section3-1 project-card project-card--showcase">
-        <div class="project-media project-media--retro">
-            <img src="assets/img/retroarcade.png" alt="Retro Arcade project preview">
-            <div class="project-overlay-actions" aria-label="Retro Arcade links">
-                <a class="project-action-btn project-action-btn--github" href="https://github.com/8-Wonders/Projet_Application_Web_L3_Miage" target="_blank" rel="noopener noreferrer" aria-label="Open Retro Arcade source code on GitHub">
-                    <img src="assets/img/github.png" alt="GitHub">
-                </a>
-                <a class="project-action-btn project-action-btn--link" href="https://projet-application-web-l3-miage.onrender.com/" target="_blank" rel="noopener noreferrer" aria-label="Open Retro Arcade official site">
-                    <span>Link</span>
-                </a>
+    <!-- ============ SKILLS ============ -->
+    <section class="section skills" id="skills">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="sec-num">02</span>
+                <h2 data-fr="Compétences" data-en="Skills">Compétences</h2>
+            </div>
+            <div class="skills-grid" data-reveal>
+                <article class="skill-card">
+                    <h3 data-fr="Backend &amp; Langages" data-en="Backend &amp; Languages">Backend &amp; Langages</h3>
+                    <div class="skill-tags">
+                        <span><i class="devicon-python-plain"></i>Python</span><span><i class="devicon-java-plain"></i>Java</span><span><i class="devicon-kotlin-plain"></i>Kotlin</span><span><i class="devicon-c-plain"></i>C</span><span><i class="devicon-r-plain"></i>R</span><span><i class="devicon-mysql-plain"></i>SQL</span><span><i class="devicon-php-plain"></i>PHP</span><span><i class="devicon-nodejs-plain"></i>Node.js</span>
+                    </div>
+                </article>
+                <article class="skill-card">
+                    <h3>Frontend &amp; Web</h3>
+                    <div class="skill-tags">
+                        <span><i class="devicon-html5-plain"></i>HTML5</span><span><i class="devicon-css3-plain"></i>CSS3</span><span><i class="devicon-javascript-plain"></i>JavaScript</span><span><i class="devicon-typescript-plain"></i>TypeScript</span><span><i class="devicon-babylon-plain"></i>Babylon.js</span><span><i class="devicon-markdown-original"></i>Markdown</span>
+                    </div>
+                </article>
+                <article class="skill-card">
+                    <h3 data-fr="Données &amp; BI" data-en="Data &amp; BI">Données &amp; BI</h3>
+                    <div class="skill-tags">
+                        <span><i class="devicon-powerbi-plain"></i>Power BI</span><span><i class="devicon-mongodb-plain"></i>MongoDB</span><span><i class="devicon-oracle-plain"></i>Oracle</span><span><i class="devicon-mysql-plain"></i>MySQL</span>
+                    </div>
+                </article>
+                <article class="skill-card">
+                    <h3 data-fr="Outils" data-en="Tools">Outils</h3>
+                    <div class="skill-tags">
+                        <span><i class="devicon-git-plain"></i>Git</span><span><i class="devicon-github-plain"></i>GitHub</span><span><i class="devicon-phpmyadmin-plain"></i>phpMyAdmin</span><span><i class="devicon-vscode-plain"></i>VS Code</span><span><i class="devicon-intellij-plain"></i>IntelliJ IDEA</span>
+                    </div>
+                </article>
+                <article class="skill-card">
+                    <h3 data-fr="Gestion de projet" data-en="Management">Gestion de projet</h3>
+                    <div class="skill-tags">
+                        <span><i class="devicon-trello-plain"></i>Agile</span><span><i class="devicon-jira-plain"></i>Scrum</span><span><i class="devicon-bitbucket-plain"></i>Kanban</span><span data-fr="Communication" data-en="Communication">Communication</span><span>UML</span><span data-fr="Design Pattern" data-en="Design Patterns">Design Pattern</span><span data-fr="Marketing" data-en="Marketing">Marketing</span><span data-fr="Étude de marché" data-en="Market Research">Étude de marché</span>
+                    </div>
+                </article>
+                <article class="skill-card">
+                    <h3 data-fr="Savoir-être" data-en="Soft Skills">Savoir-être</h3>
+                    <div class="skill-tags">
+                        <span data-fr="Travail d'équipe" data-en="Teamwork">Travail d'équipe</span><span data-fr="Résolution de problèmes" data-en="Problem Solving">Résolution de problèmes</span><span data-fr="Adaptabilité" data-en="Adaptability">Adaptabilité</span><span data-fr="Esprit critique" data-en="Critical Thinking">Esprit critique</span><span data-fr="Management inclusif" data-en="Inclusive Management">Management inclusif</span><span data-fr="Organisation" data-en="Organization">Organisation</span>
+                    </div>
+                </article>
             </div>
         </div>
-        <div class="project-body">
-            <span class="project-status project-status--live"><span class="status-dot status-dot--live" aria-hidden="true"></span>Official Site</span>
-            <p>Retro Arcade</p>
-            <span class="project-description">Online gaming platform built as part of the L3 MIAGE project, with an accessible and interactive web interface with 3 Games included. html,css,javascript,node.js,babylonejs</span>
-            <span class="project-track">Live and playable</span>
-        </div>
-    </article>
+    </section>
 
-    <article class="section3-1 project-card project-card--showcase">
-        <div class="project-media">
-            <img src="assets/img/7wonders.png" alt="7 Wonders project preview">
-            <div class="project-overlay-actions" aria-label="7 Wonders links">
-                <a class="project-action-btn project-action-btn--github" href="https://github.com/nidente/7-wonders" target="_blank" rel="noopener noreferrer" aria-label="Open 7 Wonders source code on GitHub">
-                    <img src="assets/img/github.png" alt="GitHub">
-                </a>
+    <!-- ============ PROJECTS ============ -->
+    <section class="section projects" id="projects">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="sec-num">03</span>
+                <h2 data-fr="Projets" data-en="Projects">Projets</h2>
+            </div>
+            <p class="section-lede" data-fr="Cinq projets, du prototype académique à l'application en ligne, chacun pensé pour résoudre un problème précis." data-en="Five projects, from academic prototype to live application, each built to solve a specific problem.">Cinq projets, du prototype académique à l'application en ligne, chacun pensé pour résoudre un problème précis.</p>
+
+            <div class="projects-grid" data-reveal>
+
+                <article class="project-card">
+                    <div class="project-media">
+                        <img src="assets/img/valisp.png" alt="Valisp">
+                        <div class="project-reveal">
+                            <a href="https://github.com/nidente/Valisp" target="_blank" rel="noopener noreferrer" data-fr="Code source ↗" data-en="Source code ↗">Code source ↗</a>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <span class="project-status"><span class="dot"></span><span data-fr="Code source" data-en="Source code">Code source</span></span>
+                        <h3>Valisp</h3>
+                        <p class="project-desc" data-fr="Écrit pour comprendre ce qui se passe sous un langage de programmation&nbsp;: un interpréteur en C pour vaLisp, avec gestion mémoire manuelle et une logique d'évaluation complète." data-en="Built to understand what happens under a programming language: a C interpreter for vaLisp, with manual memory management and a complete evaluation engine.">Écrit pour comprendre ce qui se passe sous un langage de programmation&nbsp;: un interpréteur en C pour vaLisp, avec gestion mémoire manuelle et une logique d'évaluation complète.</p>
+                        <div class="project-stack"><span>C</span></div>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-media">
+                        <img src="assets/img/retroarcade.png" alt="Retro Arcade">
+                        <div class="project-reveal">
+                            <a href="https://projet-application-web-l3-miage.onrender.com/" target="_blank" rel="noopener noreferrer" data-fr="Voir le site ↗" data-en="View site ↗">Voir le site ↗</a>
+                            <a href="https://github.com/8-Wonders/Projet_Application_Web_L3_Miage" target="_blank" rel="noopener noreferrer" data-fr="Code source" data-en="Source">Code source</a>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <span class="project-status"><span class="dot"></span><span data-fr="En ligne" data-en="Live">En ligne</span></span>
+                        <h3>Retro Arcade</h3>
+                        <p class="project-desc" data-fr="Plateforme de jeu en ligne développée en équipe pour le projet L3 MIAGE&nbsp;: interface web accessible avec 3 jeux jouables, du rendu 3D à la logique serveur." data-en="A team-built online gaming platform for the L3 MIAGE project: an accessible web interface with 3 playable games, from 3D rendering to server logic.">Plateforme de jeu en ligne développée en équipe pour le projet L3 MIAGE&nbsp;: interface web accessible avec 3 jeux jouables, du rendu 3D à la logique serveur.</p>
+                        <div class="project-stack"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Node.js</span><span>Babylon.js</span></div>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-media">
+                        <img src="assets/img/7wonders.png" alt="7 Wonders">
+                        <div class="project-reveal">
+                            <a href="https://github.com/nidente/7-wonders" target="_blank" rel="noopener noreferrer" data-fr="Code source ↗" data-en="Source code ↗">Code source ↗</a>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <span class="project-status"><span class="dot"></span><span data-fr="Code source" data-en="Source code">Code source</span></span>
+                        <h3>7 Wonders</h3>
+                        <p class="project-desc" data-fr="Implémentation Java du jeu de plateau 7 Wonders, avec la logique complète des règles et un bot IA capable de jouer une partie stratégique." data-en="A Java implementation of the board game 7 Wonders, with the full rules engine and an AI bot able to play a strategic game.">Implémentation Java du jeu de plateau 7 Wonders, avec la logique complète des règles et un bot IA capable de jouer une partie stratégique.</p>
+                        <div class="project-stack"><span>Java</span></div>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-media">
+                        <img src="assets/img/R.png" alt="R Project">
+                        <div class="project-reveal">
+                            <a href="https://landoulsi-app-etudiant.shinyapps.io/analyse-notes-etudiants/" target="_blank" rel="noopener noreferrer" data-fr="Voir le site ↗" data-en="View site ↗">Voir le site ↗</a>
+                            <a href="https://github.com/nidente/R-project" target="_blank" rel="noopener noreferrer" data-fr="Code source" data-en="Source">Code source</a>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <span class="project-status"><span class="dot"></span><span data-fr="En ligne" data-en="Live">En ligne</span></span>
+                        <h3>R Project</h3>
+                        <p class="project-desc" data-fr="Une application R/Shiny qui transforme des notes d'étudiants brutes en statistiques et visualisations interactives, pensée pour qu'un enseignant sans bagage technique puisse l'utiliser directement." data-en="An R/Shiny application that turns raw student grades into interactive statistics and visualizations, built so a teacher with no technical background can use it directly.">Une application R/Shiny qui transforme des notes d'étudiants brutes en statistiques et visualisations interactives, pensée pour qu'un enseignant sans bagage technique puisse l'utiliser directement.</p>
+                        <div class="project-stack"><span>R</span><span>Shiny</span></div>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-media">
+                        <img src="assets/img/Bepadel.png" alt="Bepadel">
+                    </div>
+                    <div class="project-body">
+                        <span class="project-status project-status--progress"><span class="dot"></span><span data-fr="En cours" data-en="In progress">En cours</span></span>
+                        <h3>Bepadel</h3>
+                        <p class="project-desc" data-fr="Application web et mobile en cours de développement pour connecter des joueurs de padel et organiser des tournois entre clubs." data-en="A web and mobile application in progress, connecting padel players and helping organize tournaments between clubs.">Application web et mobile en cours de développement pour connecter des joueurs de padel et organiser des tournois entre clubs.</p>
+                        <div class="project-stack"><span data-fr="Web" data-en="Web">Web</span><span data-fr="Mobile" data-en="Mobile">Mobile</span></div>
+                    </div>
+                </article>
+
             </div>
         </div>
-        <div class="project-body">
-            <span class="project-status project-status--live"><span class="status-dot status-dot--live" aria-hidden="true"></span>Source Code</span>
-            <p>7 Wonders</p>
-            <span class="project-description">Java implementation of 7 Wonders with complete game logic and a strategic AI bot, en JAVA.</span>
-            <span class="project-track">Repository available</span>
-        </div>
-    </article>
+    </section>
 
-    <article class="section3-1 project-card project-card--showcase">
-        <div class="project-media project-media--r">
-            <img src="assets/img/R.png" alt="R project preview">
-            <div class="project-overlay-actions" aria-label="R project links">
-                <a class="project-action-btn project-action-btn--github" href="https://github.com/nidente/R-project" target="_blank" rel="noopener noreferrer" aria-label="Open R project source code on GitHub">
-                    <img src="assets/img/github.png" alt="GitHub">
-                </a>
-                <a class="project-action-btn project-action-btn--link" href="https://landoulsi-app-etudiant.shinyapps.io/analyse-notes-etudiants/" target="_blank" rel="noopener noreferrer" aria-label="Open R project official site">
-                    <span>Link</span>
-                </a>
+    <!-- ============ EXPERIENCE & PATH ============ -->
+    <section class="section experience" id="experience">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="sec-num">04</span>
+                <h2 data-fr="Expérience &amp; Parcours" data-en="Experience &amp; Path">Expérience &amp; Parcours</h2>
+            </div>
+            <p class="section-lede" data-fr="Du bac au terrain de padel, ce qui m'a mené vers la donnée et pourquoi j'y reste." data-en="From high school to the padel court, what led me to data and why I'm staying.">Du bac au terrain de padel, ce qui m'a mené vers la donnée et pourquoi j'y reste.</p>
+
+            <div class="timeline" data-reveal>
+                <div class="timeline-item">
+                    <div class="timeline-marker"><span class="timeline-dot"></span></div>
+                    <div>
+                        <span class="timeline-eyebrow" data-fr="Le déclic" data-en="Where it started">Le déclic</span>
+                        <h3 data-fr="Baccalauréat Économie, Mathématiques et Sciences sociales" data-en="Baccalauréat in Economics, Mathematics and Social Sciences">Baccalauréat Économie, Mathématiques et Sciences sociales</h3>
+                        <p data-fr="Une base solide en mathématiques qui a nourri mon intérêt pour la technique et l'analyse." data-en="A solid foundation in mathematics that fed my interest in tech and analysis.">Une base solide en mathématiques qui a nourri mon intérêt pour la technique et l'analyse.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"><span class="timeline-dot"></span></div>
+                    <div>
+                        <span class="timeline-eyebrow" data-fr="La découverte" data-en="The discovery">La découverte</span>
+                        <h3 data-fr="Stage découverte en fintech" data-en="Fintech discovery internship">Stage découverte en fintech</h3>
+                        <p data-fr="Premier contact avec le rôle de la donnée et des systèmes numériques dans la finance." data-en="A first look at the role of data and digital systems in finance.">Premier contact avec le rôle de la donnée et des systèmes numériques dans la finance.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"><span class="timeline-dot"></span></div>
+                    <div>
+                        <span class="timeline-eyebrow" data-fr="Aujourd'hui" data-en="Today">Aujourd'hui</span>
+                        <h3 data-fr="MIAGE, 3ᵉ année" data-en="MIAGE, 3rd year">MIAGE, 3ᵉ année</h3>
+                        <p data-fr="J'explore comment la donnée éclaire une décision business, entre gestion, développement et BI." data-en="Exploring how data informs a business decision, at the crossroads of management, development and BI.">J'explore comment la donnée éclaire une décision business, entre gestion, développement et BI.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"><span class="timeline-dot"></span></div>
+                    <div>
+                        <span class="timeline-eyebrow" data-fr="En parallèle" data-en="Alongside">En parallèle</span>
+                        <h3 data-fr="Padel en semi-compétition" data-en="Semi-competitive padel">Padel en semi-compétition</h3>
+                        <p data-fr="Classé dans le top 15 000 en France, une discipline qui m'a appris la même rigueur que j'applique à mes projets." data-en="Ranked in the top 15,000 in France, a discipline that taught me the same rigor I bring to my projects.">Classé dans le top 15 000 en France, une discipline qui m'a appris la même rigueur que j'applique à mes projets.</p>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="project-body">
-            <span class="project-status project-status--live"><span class="status-dot status-dot--live" aria-hidden="true"></span>Official Site</span>
-            <p>R Project</p>
-            <span class="project-description">Interactive R/Shiny project for student grade analysis with dynamic statistics and visualizations.</span>
-            <span class="project-track">Source code and official site available</span>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section contact" id="contact">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="sec-num">05</span>
+                <h2 data-fr="Contact" data-en="Contact">Contact</h2>
+            </div>
+            <p class="section-lede" data-fr="Un projet, une opportunité, une question&nbsp;? Écrivez-moi, je réponds sous 48h." data-en="A project, an opportunity, a question? Reach out, I typically reply within 48 hours.">Un projet, une opportunité, une question&nbsp;? Écrivez-moi, je réponds sous 48h.</p>
+
+            <div class="contact-grid" data-reveal>
+                <form class="contact-form" id="contact-form">
+                    <div class="form-row">
+                        <label for="full-name" data-fr="Nom complet" data-en="Full name">Nom complet</label>
+                        <input type="text" id="full-name" name="full_name" required
+                               data-fr-placeholder="Votre nom" data-en-placeholder="Your name" placeholder="Votre nom">
+                    </div>
+                    <div class="form-row">
+                        <label for="email" data-fr="Email" data-en="Email">Email</label>
+                        <input type="email" id="email" name="user_email" required
+                               data-fr-placeholder="vous@exemple.com" data-en-placeholder="you@example.com" placeholder="vous@exemple.com">
+                    </div>
+                    <div class="form-row">
+                        <label for="subject" data-fr="Sujet" data-en="Subject">Sujet</label>
+                        <select id="subject" name="subject">
+                            <option value="project" data-fr="Projet" data-en="Project">Projet</option>
+                            <option value="opportunity" data-fr="Opportunité" data-en="Opportunity">Opportunité</option>
+                            <option value="other" data-fr="Autre" data-en="Other">Autre</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <label for="message" data-fr="Message" data-en="Message">Message</label>
+                        <textarea id="message" name="message" required
+                                  data-fr-placeholder="Votre message" data-en-placeholder="Your message" placeholder="Votre message"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-submit" data-fr="Envoyer" data-en="Send">Envoyer</button>
+                    <div id="form-feedback" class="form-feedback" role="alert" aria-live="polite"></div>
+                </form>
+
+                <div class="contact-channels">
+                    <div class="contact-channel">
+                        <img src="assets/img/mail.png" alt="">
+                        <div class="contact-channel-text"><span data-fr="Email" data-en="Email">Email</span><strong>landoulsi.aziz@outlook.com</strong></div>
+                    </div>
+                    <a class="contact-channel" href="https://www.linkedin.com/in/aziz-landoulsi-9980191a2/" target="_blank" rel="noopener noreferrer">
+                        <img src="assets/img/linkedin.png" alt="">
+                        <div class="contact-channel-text"><span>LinkedIn</span><strong data-fr="Voir le profil" data-en="View profile">Voir le profil</strong></div>
+                    </a>
+                    <div class="contact-channel">
+                        <img src="assets/img/whatsapp.png" alt="">
+                        <div class="contact-channel-text"><span data-fr="Téléphone" data-en="Phone">Téléphone</span><strong>+33 7 45 47 37 54</strong></div>
+                    </div>
+                    <div class="contact-channel">
+                        <img src="assets/img/maps.png" alt="">
+                        <div class="contact-channel-text"><span data-fr="Localisation" data-en="Location">Localisation</span><strong>Nice · Paris · Tunis</strong></div>
+                    </div>
+                    <a class="contact-channel" href="https://github.com/nidente" target="_blank" rel="noopener noreferrer">
+                        <img src="assets/img/github.png" alt="">
+                        <div class="contact-channel-text"><span>GitHub</span><strong>github.com/nidente</strong></div>
+                    </a>
+                    <a class="contact-channel" href="https://discord.com/users/544979490317664266" target="_blank" rel="noopener noreferrer">
+                        <img src="assets/img/discord.png" alt="">
+                        <div class="contact-channel-text"><span>Discord</span><strong data-fr="Ajoutez-moi" data-en="Add me">Ajoutez-moi</strong></div>
+                    </a>
+                    </div>
+            </div>
         </div>
-    </article>
+    </section>
 
-    <article class="section3-1 project-card project-card--showcase project-card--progress">
-        <div class="project-media project-media--placeholder">
-            <img src="assets/img/Bepadel.png" alt="Bepadel project preview">
-        </div>
-        <div class="project-body">
-            <span class="project-status"><span class="status-dot" aria-hidden="true"></span>In progress</span>
-            <p>Bepadel</p>
-            <span class="project-description">Web and mobile application that connects padel players and helps organize tournaments.</span>
-            <span class="project-track">In progress</span>
-        </div>
-    </article>
-</div>
-
-<h1 class="section35-titre" id="more-about">Get to Know Me</h1>
-<div class="section35">
-    <article class="about-more-card">
-    <h3>Education</h3>
-    <p>My interest in technology grew from a strong foundation in mathematics during my Baccalauréat in Economics, Mathematics and Social Sciences. 
-A discovery internship in a fintech company later introduced me to the role of data and digital systems in finance. 
-Today, I am a third-year MIAGE (Management Information Systems) student, exploring how technology and data can support business decision-making.
-</p>
-    </article>
-
-    <article class="about-more-card">
-    <h3>What drives me</h3>
-    <p>I enjoy building solutions that create real value and improve over time. I am especially interested in Business Intelligence and data analysis, and in how technology can transform raw data into meaningful insights that support better decision-making. Turning ideas into practical applications and continuously improving them is what motivates me the most.</p>
-    </article>
-
-    <article class="about-more-card">
-    <h3>Passions</h3>
-    <p>Besides coding, I am passionate about finance and economic analysis, particularly understanding how markets and economic trends impact businesses and technology. <br>I also have a strong interest in sports: I play padel at a semi-professional level and am currently ranked within the top 15k players in France. Fitness is also an important part of my routine, helping me stay disciplined and focused in both sports and projects.</p>
-    </article>
-</div>
-
-<h1 class="section5-titre" id="contact">Get in Touch</h1>
-<form class="section5" id="contact-form">
-    <div class="section5-1"><input type="text" id="first-name" name="first_name" placeholder="First Name" required aria-label="First Name"></div>
-    <div class="section5-1"><input type="text" id="last-name" name="last_name" placeholder="Last Name" required aria-label="Last Name"></div>
-    <div class="section5-1"><input type="email" id="email" name="user_email" placeholder="Email" required aria-label="Email Address"></div>
-    <div class="section5-1"><input type="tel" id="phone" name="phone" placeholder="Phone Number" aria-label="Phone Number"></div>
-    <div class="section5-1"><textarea name="message" id="message" placeholder="Your Message" required aria-label="Message"></textarea></div>
-    <button type="submit" class="btn-submit" aria-label="Submit contact form">Submit now</button>
-    <div id="form-feedback" class="form-feedback" role="alert" aria-live="polite"></div>
-</form>
-
-<div class="contact-ribbon">
-    <div class="contact-pill">
-        <img class="contact-pill-logo logo-mail" src="assets/img/mail.png" alt="Email logo">
-        <div class="contact-pill-text"><span>Email</span><strong>landoulsi.aziz@outlook.com</strong></div>
-    </div>
-    <a class="contact-pill" href="https://www.linkedin.com/in/aziz-landoulsi-9980191a2/">
-        <img class="contact-pill-logo" src="assets/img/linkedin.png" alt="LinkedIn logo">
-        <div class="contact-pill-text"><span>LinkedIn</span><strong>See profile</strong></div>
-    </a>
-    <div class="contact-pill">
-        <img class="contact-pill-logo" src="assets/img/whatsapp.png" alt="Phone logo">
-        <div class="contact-pill-text"><span>Phone</span><strong>+33 7 45 47 37 54</strong></div>
-    </div>
-    <div class="contact-pill">
-        <img class="contact-pill-logo" src="assets/img/maps.png" alt="Address logo">
-        <div class="contact-pill-text"><span>Address</span><strong>Nice - Paris - Tunis</strong></div>
-    </div>
-    <a class="contact-pill" href="https://github.com/nidente">
-        <img class="contact-pill-logo logo-github" src="assets/img/github.png" alt="GitHub logo">
-        <div class="contact-pill-text"><span>GitHub</span><strong>github.com/nidente</strong></div>
-    </a>
-    <a class="contact-pill" href="https://discord.com/users/544979490317664266">
-        <img class="contact-pill-logo logo-discord" src="assets/img/discord.png" alt="Discord logo">
-        <div class="contact-pill-text"><span>Discord</span><strong>Add me</strong></div>
-    </a>
-</div>
+</main>
 
 <footer class="footer">
-    <div class="footer-content">
-        <p>&copy; 2026 Aziz Landoulsi — Designed and developed by Aziz Landoulsi.</p>
-        <p>All rights reserved.</p>
+    <div class="wrap footer-inner">
+        <p data-fr="© 2026 Aziz Landoulsi. Conçu et développé par Aziz Landoulsi." data-en="© 2026 Aziz Landoulsi. Designed and built by Aziz Landoulsi.">© 2026 Aziz Landoulsi. Conçu et développé par Aziz Landoulsi.</p>
+        <div class="footer-links">
+            <a href="https://github.com/nidente" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><img src="assets/img/github.png" alt=""></a>
+            <a href="https://www.linkedin.com/in/aziz-landoulsi-9980191a2/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src="assets/img/linkedin.png" alt=""></a>
+            <a href="mailto:landoulsi.aziz@outlook.com" aria-label="Email"><img src="assets/img/mail.png" alt=""></a>
+        </div>
     </div>
 </footer>
+
+<div class="floating" id="floating-actions">
+    <button class="floating-launcher" id="floating-toggle" type="button" data-fr-aria-label="Contact rapide" data-en-aria-label="Quick contact" aria-label="Contact rapide" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+    </button>
+    <div class="floating-menu">
+        <a class="floating-item" href="https://wa.me/33745473754" target="_blank" rel="noopener noreferrer" title="WhatsApp"><img src="assets/img/whatsapp.png" alt="WhatsApp"></a>
+        <a class="floating-item" href="https://www.linkedin.com/in/aziz-landoulsi-9980191a2/" target="_blank" rel="noopener noreferrer" title="LinkedIn"><img src="assets/img/linkedin.png" alt="LinkedIn"></a>
+        <a class="floating-item" href="https://github.com/nidente" target="_blank" rel="noopener noreferrer" title="GitHub"><img src="assets/img/github.png" alt="GitHub"></a>
+    </div>
+</div>
 
 </body>
 </html>
