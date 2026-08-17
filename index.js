@@ -281,7 +281,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // ============ FLOATING QUICK-CONTACT ============
   const floating = document.getElementById("floating-actions");
   const floatingToggle = document.getElementById("floating-toggle");
-  const heroSection = document.getElementById("home");
   const contactSection = document.getElementById("contact");
 
   if (floating && floatingToggle) {
@@ -297,15 +296,17 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    window.addEventListener("scroll", () => {
-      const pastHero = !heroSection || heroSection.getBoundingClientRect().bottom < 0;
+    const updateFloatingVisibility = () => {
       const nearContact = contactSection && contactSection.getBoundingClientRect().top < window.innerHeight * 0.75;
-      floating.classList.toggle("show", pastHero && !nearContact);
+      floating.classList.toggle("show", !nearContact);
       if (nearContact) {
         floating.classList.remove("is-open");
         floatingToggle.setAttribute("aria-expanded", "false");
       }
-    }, { passive: true });
+    };
+
+    updateFloatingVisibility();
+    window.addEventListener("scroll", updateFloatingVisibility, { passive: true });
   }
 
   // ============ RESUME DOWNLOAD ============
