@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-fr="Aziz Landoulsi | Portfolio" data-en="Aziz Landoulsi | Portfolio">Aziz Landoulsi | Portfolio</title>
     <meta id="meta-description" name="description"
-          data-fr="Portfolio d'Aziz Landoulsi, étudiant MIAGE en développement, BI, data et support."
-          data-en="Aziz Landoulsi's portfolio, a MIAGE student in development, BI, data and support."
-          content="Portfolio d'Aziz Landoulsi, étudiant MIAGE en développement, BI, data et support.">
+          data-fr="Portfolio d'Aziz Landoulsi, étudiant MIAGE spécialisé en informatique appliquée à la finance (fintech), développement et support."
+          data-en="Aziz Landoulsi's portfolio, a MIAGE student specialized in fintech (computer science applied to finance), development and support."
+          content="Portfolio d'Aziz Landoulsi, étudiant MIAGE spécialisé en informatique appliquée à la finance (fintech), développement et support.">
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
@@ -38,6 +38,10 @@
 <div class="animated-bg" aria-hidden="true" id="animated-bg">
     <div class="rect-field" id="rect-field"></div>
 </div>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
 
 <a class="skip-link" href="#main" data-fr="Aller au contenu" data-en="Skip to content">Aller au contenu</a>
 
@@ -82,7 +86,7 @@
     <section class="hero" id="home">
         <div class="wrap hero-grid">
             <div class="hero-copy">
-                <p class="eyebrow" data-fr="Développement · BI · Data · Support" data-en="Development · BI · Data · Support">Développement · BI · Data · Support</p>
+                <p class="eyebrow" data-fr="Fintech · Développement · BI · Support" data-en="Fintech · Development · BI · Support">Fintech · Développement · BI · Support</p>
                 <h1 data-fr="Guidé par la curiosité, porté par la technologie." data-en="Driven by curiosity, powered by technology.">Guidé par la curiosité, porté par la technologie.</h1>
                 <p class="hero-lede" data-fr="Étudiant en Master MIAGE à l'Université Côte d'Azur, passionné par l'informatique et les nouvelles technologies, je développe des solutions numériques en combinant développement logiciel, Business Intelligence, analyse de données et support technique. À travers mes projets et expériences, j'accompagne la conception de produits numériques, de la phase d'analyse et de développement jusqu'à leur mise en production." data-en="I'm a Master's student in Management Information Systems (MIAGE) at Université Côte d'Azur, passionate about computer science and emerging technologies. I build digital solutions that combine software development, Business Intelligence, data analysis and technical support. Through my projects and experience, I take part in building digital products, from analysis and development through to production.">Étudiant en Master MIAGE à l'Université Côte d'Azur, passionné par l'informatique et les nouvelles technologies, je développe des solutions numériques en combinant développement logiciel, Business Intelligence, analyse de données et support technique. À travers mes projets et expériences, j'accompagne la conception de produits numériques, de la phase d'analyse et de développement jusqu'à leur mise en production.</p>
 
@@ -94,7 +98,7 @@
                 <div class="hero-stats" aria-label="Points clés du portfolio">
                     <div><strong data-count="6">0</strong><span data-fr="projets livrés" data-en="projects shipped">projets livrés</span></div>
                     <div><strong data-count="2">0</strong><span data-fr="plateformes en ligne" data-en="live platforms">plateformes en ligne</span></div>
-                    <div><strong data-count="1">0</strong><span data-fr="focus&nbsp;: data &amp; web" data-en="focus: data &amp; web">focus&nbsp;: data &amp; web</span></div>
+                    <div><strong data-count="1">0</strong><span data-fr="focus&nbsp;: fintech &amp; web" data-en="focus: fintech &amp; web">focus&nbsp;: fintech &amp; web</span></div>
                 </div>
             </div>
 
@@ -111,7 +115,7 @@
         <div class="wrap about-grid">
             <div class="section-head">
                 <span class="sec-num">01</span>
-                <h2 data-fr="Présentation" data-en="About">Présentation</h2>
+                <h2 data-fr="Présentation" data-en="About" data-reveal>Présentation</h2>
             </div>
             <div>
                 <p class="about-lede" data-fr="Je m'appelle Aziz Landoulsi. En troisième année de MIAGE, je me situe au croisement de la gestion, de la donnée et du développement, là où une bonne architecture technique rencontre une vraie utilité métier. Je préfère construire des outils qui simplifient une décision plutôt que des démonstrations techniques sans usage. Ce portfolio réunit mes projets, mes compétences, et la façon dont j'aborde un problème&nbsp;: comprendre avant de coder." data-en="I'm Aziz Landoulsi, a third-year Management Information Systems (MIAGE) student working at the intersection of business, data and software, where solid technical architecture meets real business value. I care more about tools that simplify a real decision than technical demos without a purpose. This portfolio brings together my projects, my skills, and the way I approach a problem: understand it before I build it.">Je m'appelle Aziz Landoulsi. En troisième année de MIAGE, je me situe au croisement de la gestion, de la donnée et du développement, là où une bonne architecture technique rencontre une vraie utilité métier. Je préfère construire des outils qui simplifient une décision plutôt que des démonstrations techniques sans usage. Ce portfolio réunit mes projets, mes compétences, et la façon dont j'aborde un problème&nbsp;: comprendre avant de coder.</p>
@@ -139,40 +143,40 @@
         <div class="wrap">
             <div class="section-head">
                 <span class="sec-num">02</span>
-                <h2 data-fr="Compétences" data-en="Skills">Compétences</h2>
+                <h2 data-fr="Compétences" data-en="Skills" data-reveal>Compétences</h2>
             </div>
-            <div class="skills-grid" data-reveal>
-                <article class="skill-card">
+            <div class="skills-grid">
+                <article class="skill-card" data-reveal>
                     <h3 data-fr="Backend &amp; Langages" data-en="Backend &amp; Languages">Backend &amp; Langages</h3>
                     <div class="skill-tags">
                         <span><i class="devicon-python-plain"></i>Python</span><span><i class="devicon-java-plain"></i>Java</span><span><i class="devicon-kotlin-plain"></i>Kotlin</span><span><i class="devicon-c-plain"></i>C</span><span><i class="devicon-r-plain"></i>R</span><span><i class="devicon-mysql-plain"></i>SQL</span><span><i class="devicon-php-plain"></i>PHP</span><span><i class="devicon-nodejs-plain"></i>Node.js</span>
                     </div>
                 </article>
-                <article class="skill-card">
+                <article class="skill-card" data-reveal>
                     <h3>Frontend &amp; Web</h3>
                     <div class="skill-tags">
                         <span><i class="devicon-html5-plain"></i>HTML5</span><span><i class="devicon-css3-plain"></i>CSS3</span><span><i class="devicon-javascript-plain"></i>JavaScript</span><span><i class="devicon-typescript-plain"></i>TypeScript</span><span><i class="devicon-react-original"></i>React</span><span><i class="devicon-babylon-plain"></i>Babylon.js</span><span><i class="devicon-markdown-original"></i>Markdown</span>
                     </div>
                 </article>
-                <article class="skill-card">
+                <article class="skill-card" data-reveal>
                     <h3 data-fr="Données &amp; BI" data-en="Data &amp; BI">Données &amp; BI</h3>
                     <div class="skill-tags">
                         <span><i class="devicon-powerbi-plain"></i>Power BI</span><span><i class="devicon-mongodb-plain"></i>MongoDB</span><span><i class="devicon-oracle-plain"></i>Oracle</span><span><i class="devicon-mysql-plain"></i>MySQL</span>
                     </div>
                 </article>
-                <article class="skill-card">
+                <article class="skill-card" data-reveal>
                     <h3 data-fr="Outils" data-en="Tools">Outils</h3>
                     <div class="skill-tags">
                         <span><i class="devicon-git-plain"></i>Git</span><span><i class="devicon-github-plain"></i>GitHub</span><span><i class="devicon-phpmyadmin-plain"></i>phpMyAdmin</span><span><i class="devicon-vscode-plain"></i>VS Code</span><span><i class="devicon-intellij-plain"></i>IntelliJ IDEA</span>
                     </div>
                 </article>
-                <article class="skill-card">
+                <article class="skill-card" data-reveal>
                     <h3 data-fr="Gestion de projet" data-en="Management">Gestion de projet</h3>
                     <div class="skill-tags">
                         <span><i class="devicon-trello-plain"></i>Agile</span><span><i class="devicon-jira-plain"></i>Scrum</span><span><i class="devicon-bitbucket-plain"></i>Kanban</span><span data-fr="Communication" data-en="Communication">Communication</span><span>UML</span><span data-fr="Design Pattern" data-en="Design Patterns">Design Pattern</span><span data-fr="Marketing" data-en="Marketing">Marketing</span><span data-fr="Étude de marché" data-en="Market Research">Étude de marché</span>
                     </div>
                 </article>
-                <article class="skill-card">
+                <article class="skill-card" data-reveal>
                     <h3 data-fr="Savoir-être" data-en="Soft Skills">Savoir-être</h3>
                     <div class="skill-tags">
                         <span data-fr="Travail d'équipe" data-en="Teamwork">Travail d'équipe</span><span data-fr="Résolution de problèmes" data-en="Problem Solving">Résolution de problèmes</span><span data-fr="Adaptabilité" data-en="Adaptability">Adaptabilité</span><span data-fr="Esprit critique" data-en="Critical Thinking">Esprit critique</span><span data-fr="Management inclusif" data-en="Inclusive Management">Management inclusif</span><span data-fr="Organisation" data-en="Organization">Organisation</span>
@@ -187,13 +191,13 @@
         <div class="wrap">
             <div class="section-head">
                 <span class="sec-num">03</span>
-                <h2 data-fr="Projets" data-en="Projects">Projets</h2>
+                <h2 data-fr="Projets" data-en="Projects" data-reveal>Projets</h2>
             </div>
             <p class="section-lede" data-fr="Six projets, du prototype académique à l'application en ligne, chacun pensé pour résoudre un problème précis." data-en="Six projects, from academic prototype to live application, each built to solve a specific problem.">Six projets, du prototype académique à l'application en ligne, chacun pensé pour résoudre un problème précis.</p>
 
-            <div class="projects-grid" data-reveal>
+            <div class="projects-grid">
 
-                <article class="project-card">
+                <article class="project-card" data-reveal>
                     <div class="project-media">
                         <img src="assets/img/retroarcade.png" alt="Retro Arcade">
                         <div class="project-reveal">
@@ -209,7 +213,7 @@
                     </div>
                 </article>
 
-                <article class="project-card">
+                <article class="project-card" data-reveal>
                     <div class="project-media">
                         <img src="assets/img/R.png" alt="R Project">
                         <div class="project-reveal">
@@ -225,7 +229,7 @@
                     </div>
                 </article>
 
-                <article class="project-card">
+                <article class="project-card" data-reveal>
                     <div class="project-media">
                         <img src="assets/img/logo.png" alt="VideoPokerKMP">
                         <div class="project-reveal">
@@ -241,7 +245,7 @@
                     </div>
                 </article>
 
-                <article class="project-card">
+                <article class="project-card" data-reveal>
                     <div class="project-media">
                         <img src="assets/img/valisp.png" alt="Valisp">
                         <div class="project-reveal">
@@ -256,7 +260,7 @@
                     </div>
                 </article>
 
-                <article class="project-card">
+                <article class="project-card" data-reveal>
                     <div class="project-media">
                         <img src="assets/img/7wonders.png" alt="7 Wonders">
                         <div class="project-reveal">
@@ -271,7 +275,7 @@
                     </div>
                 </article>
 
-                <article class="project-card">
+                <article class="project-card" data-reveal>
                     <div class="project-media">
                         <img src="assets/img/Bepadel.png" alt="Bepadel">
                     </div>
@@ -292,12 +296,12 @@
         <div class="wrap">
             <div class="section-head">
                 <span class="sec-num">04</span>
-                <h2 data-fr="Expérience &amp; Parcours" data-en="Experience &amp; Path">Expérience &amp; Parcours</h2>
+                <h2 data-fr="Expérience &amp; Parcours" data-en="Experience &amp; Path" data-reveal>Expérience &amp; Parcours</h2>
             </div>
-            <p class="section-lede" data-fr="Du bac au terrain de padel, ce qui m'a mené vers la donnée et pourquoi j'y reste." data-en="From high school to the padel court, what led me to data and why I'm staying.">Du bac au terrain de padel, ce qui m'a mené vers la donnée et pourquoi j'y reste.</p>
+            <p class="section-lede" data-fr="Du bac au terrain de padel, ce qui m'a mené vers la fintech et pourquoi j'y reste." data-en="From high school to the padel court, what led me to fintech and why I'm staying.">Du bac au terrain de padel, ce qui m'a mené vers la fintech et pourquoi j'y reste.</p>
 
-            <div class="timeline" data-reveal>
-                <div class="timeline-item">
+            <div class="timeline">
+                <div class="timeline-item" data-reveal>
                     <div class="timeline-marker"><span class="timeline-dot"></span></div>
                     <div>
                         <span class="timeline-eyebrow" data-fr="Le déclic" data-en="Where it started">Le déclic</span>
@@ -305,23 +309,31 @@
                         <p data-fr="Une base solide en mathématiques qui a nourri mon intérêt pour la technique et l'analyse." data-en="A solid foundation in mathematics that fed my interest in tech and analysis.">Une base solide en mathématiques qui a nourri mon intérêt pour la technique et l'analyse.</p>
                     </div>
                 </div>
-                <div class="timeline-item">
+                <div class="timeline-item" data-reveal>
                     <div class="timeline-marker"><span class="timeline-dot"></span></div>
                     <div>
-                        <span class="timeline-eyebrow" data-fr="La découverte" data-en="The discovery">La découverte</span>
-                        <h3 data-fr="Stage découverte en fintech" data-en="Fintech discovery internship">Stage découverte en fintech</h3>
-                        <p data-fr="Premier contact avec le rôle de la donnée et des systèmes numériques dans la finance." data-en="A first look at the role of data and digital systems in finance.">Premier contact avec le rôle de la donnée et des systèmes numériques dans la finance.</p>
+                        <span class="timeline-eyebrow" data-fr="La découverte · Été 2024" data-en="The discovery · Summer 2024">La découverte · Été 2024</span>
+                        <h3 data-fr="Stage Test &amp; Support IT" data-en="Test &amp; IT Support internship">Stage Test &amp; Support IT</h3>
+                        <p data-fr="Deux mois chez Intelligencia Financial Softwares (IFS) à Tunis&nbsp;: tests et maintenance applicative, extraction et transformation de données multi-sources (web, PDF) vers XML/Excel en Python, et support utilisateurs de premier niveau." data-en="Two months at Intelligencia Financial Softwares (IFS) in Tunis: application testing and maintenance, extracting and transforming multi-source data (web, PDF) into XML/Excel with Python, and first-line user support.">Deux mois chez Intelligencia Financial Softwares (IFS) à Tunis&nbsp;: tests et maintenance applicative, extraction et transformation de données multi-sources (web, PDF) vers XML/Excel en Python, et support utilisateurs de premier niveau.</p>
                     </div>
                 </div>
-                <div class="timeline-item">
+                <div class="timeline-item" data-reveal>
+                    <div class="timeline-marker"><span class="timeline-dot"></span></div>
+                    <div>
+                        <span class="timeline-eyebrow" data-fr="Le retour chez IFS · Été 2026" data-en="Back at IFS · Summer 2026">Le retour chez IFS · Été 2026</span>
+                        <h3 data-fr="Delivery, Support Applicatif (N2/N3) &amp; Développement" data-en="Delivery, Application Support (N2/N3) &amp; Development">Delivery, Support Applicatif (N2/N3) &amp; Développement</h3>
+                        <p data-fr="Trois mois chez IFS&nbsp;: support N1/N2 sur MicroBroker, le progiciel de gestion pour sociétés de gestion et d'intermédiation, recueil de besoins et interventions en base de données, contribution en React aux applications web et mobile, et recette des nouvelles fonctionnalités." data-en="Three months at IFS: N1/N2 support on MicroBroker, a management platform for investment and brokerage firms, requirements gathering and database work, React contributions to the web and mobile apps, and QA on new features.">Trois mois chez IFS&nbsp;: support N1/N2 sur MicroBroker, le progiciel de gestion pour sociétés de gestion et d'intermédiation, recueil de besoins et interventions en base de données, contribution en React aux applications web et mobile, et recette des nouvelles fonctionnalités.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-reveal>
                     <div class="timeline-marker"><span class="timeline-dot"></span></div>
                     <div>
                         <span class="timeline-eyebrow" data-fr="Aujourd'hui" data-en="Today">Aujourd'hui</span>
-                        <h3 data-fr="MIAGE, 3ᵉ année" data-en="MIAGE, 3rd year">MIAGE, 3ᵉ année</h3>
-                        <p data-fr="J'explore comment la donnée éclaire une décision business, entre gestion, développement et BI." data-en="Exploring how data informs a business decision, at the crossroads of management, development and BI.">J'explore comment la donnée éclaire une décision business, entre gestion, développement et BI.</p>
+                        <h3 data-fr="MIAGE, Master 1ère année" data-en="MIAGE, Master's 1st year">MIAGE, Master 1ère année</h3>
+                        <p data-fr="Licence MIAGE en poche, je poursuis en M1 pour approfondir l'informatique appliquée à la finance, le développement et la BI à plus forte échelle." data-en="Bachelor's in MIAGE completed, now in the first year of the Master's, going deeper into fintech, development and BI at a larger scale.">Licence MIAGE en poche, je poursuis en M1 pour approfondir l'informatique appliquée à la finance, le développement et la BI à plus forte échelle.</p>
                     </div>
                 </div>
-                <div class="timeline-item">
+                <div class="timeline-item" data-reveal>
                     <div class="timeline-marker"><span class="timeline-dot"></span></div>
                     <div>
                         <span class="timeline-eyebrow" data-fr="En parallèle" data-en="Alongside">En parallèle</span>
@@ -338,7 +350,7 @@
         <div class="wrap">
             <div class="section-head">
                 <span class="sec-num">05</span>
-                <h2 data-fr="Contact" data-en="Contact">Contact</h2>
+                <h2 data-fr="Contact" data-en="Contact" data-reveal>Contact</h2>
             </div>
             <p class="section-lede" data-fr="Un projet, une opportunité, une question&nbsp;? Écrivez-moi, je réponds sous 48h." data-en="A project, an opportunity, a question? Reach out, I typically reply within 48 hours.">Un projet, une opportunité, une question&nbsp;? Écrivez-moi, je réponds sous 48h.</p>
 

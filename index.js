@@ -70,9 +70,15 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ============ THEME ENGINE ============
+  // rebuildAtmosphere is wired up by the rectangle-field section below;
+  // declared here so setTheme can refresh the field's colors to match
+  // the newly active theme's tokens instead of leaving stale colors.
+  let rebuildAtmosphere = null;
+
   function setTheme(theme) {
     html.setAttribute("data-theme", theme);
     try { localStorage.setItem("theme", theme); } catch (e) {}
+    if (rebuildAtmosphere) rebuildAtmosphere();
   }
 
   const themeSwitchBtn = document.getElementById("theme-switch");
@@ -87,6 +93,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // ============ ATMOSPHERE: MOUSE PARALLAX ============
   const reducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const hasFinePointer = window.matchMedia && window.matchMedia("(pointer: fine)").matches;
+  // Gate for every effect below that drives transform via GSAP on pointer
+  // movement (magnetic buttons, image parallax, custom cursor). Kept as
+  // one flag + one body class so they all switch on/off together and the
+  // CSS transition hand-offs in index.css stay in sync with the JS.
+  const useMotionFX = Boolean(window.gsap) && hasFinePointer && !reducedMotion;
+  if (useMotionFX) document.body.classList.add("has-motion-fx");
+
   if (!reducedMotion && hasFinePointer) {
     let rafId = null;
     document.addEventListener("pointermove", (e) => {
@@ -101,12 +114,111 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // ============ CUSTOM CURSOR ============
+  if (useMotionFX) {
+    const cursorDot = document.querySelector(".cursor-dot");
+    const cursorRing = document.querySelector(".cursor-ring");
+    if (cursorDot && cursorRing) {
+      gsap.set([cursorDot, cursorRing], { x: window.innerWidth / 2, y: window.innerHeight / 2 });
+      const dotX = gsap.quickTo(cursorDot, "x", { duration: 0.1, ease: "power3.out" });
+      const dotY = gsap.quickTo(cursorDot, "y", { duration: 0.1, ease: "power3.out" });
+      const ringX = gsap.quickTo(cursorRing, "x", { duration: 0.35, ease: "power3.out" });
+      const ringY = gsap.quickTo(cursorRing, "y", { duration: 0.35, ease: "power3.out" });
+      window.addEventListener("pointermove", (e) => {
+        dotX(e.clientX);
+        dotY(e.clientY);
+        ringX(e.clientX);
+        ringY(e.clientY);
+      });
+      document.querySelectorAll("a, button, input, textarea, select, .project-card").forEach((el) => {
+        el.addEventListener("pointerenter", () => cursorRing.classList.add("is-active"));
+        el.addEventListener("pointerleave", () => cursorRing.classList.remove("is-active"));
+      });
+    }
+  }
+
+  // ============ MAGNETIC BUTTONS ============
+  if (useMotionFX) {
+    document.querySelectorAll(".btn").forEach((btn) => {
+      const moveX = gsap.quickTo(btn, "x", { duration: 0.4, ease: "power3.out" });
+      const moveY = gsap.quickTo(btn, "y", { duration: 0.4, ease: "power3.out" });
+      btn.addEventListener("pointermove", (e) => {
+        const rect = btn.getBoundingClientRect();
+        moveX((e.clientX - rect.left - rect.width / 2) * 0.35);
+        moveY((e.clientY - rect.top - rect.height / 2) * 0.35);
+      });
+      btn.addEventListener("pointerleave", () => {
+        moveX(0);
+        moveY(0);
+      });
+    });
+  }
+
+  // ============ HERO ENTRANCE (GSAP) ============
+  // The rest of the page reveals on scroll; the hero is visible on
+  // first paint, so it gets its own one-time orchestrated sequence
+  // instead of relying on the scroll-reveal mechanism. The headline is
+  // split into per-word masks so it reveals like a shutter opening,
+  // rather than fading in as one block with everything else.
+  if (window.gsap && !reducedMotion) {
+    const heroEyebrow = document.querySelector(".hero-copy .eyebrow");
+    const heroHeading = document.querySelector(".hero-copy h1");
+    const heroLede = document.querySelector(".hero-copy .hero-lede");
+    const heroActions = document.querySelector(".hero-copy .hero-actions");
+    const heroStats = document.querySelector(".hero-copy .hero-stats");
+    const heroMedia = document.querySelector(".hero-media");
+
+    const words = [];
+    if (heroHeading) {
+      const text = heroHeading.textContent;
+      heroHeading.innerHTML = "";
+      text.split(/(\s+)/).forEach((token) => {
+        if (!token.trim()) {
+          heroHeading.appendChild(document.createTextNode(token));
+          return;
+        }
+        const mask = document.createElement("span");
+        mask.className = "word-mask";
+        const word = document.createElement("span");
+        word.className = "word";
+        word.textContent = token;
+        mask.appendChild(word);
+        heroHeading.appendChild(mask);
+        words.push(word);
+      });
+    }
+
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+    if (words.length) tl.from(words, { yPercent: 130, duration: 0.85, stagger: 0.045 }, 0);
+    if (heroEyebrow) tl.from(heroEyebrow, { y: 14, opacity: 0, duration: 0.6 }, 0);
+    [heroLede, heroActions, heroStats].filter(Boolean).forEach((el, i) => {
+      tl.from(el, { y: 20, opacity: 0, duration: 0.8 }, 0.3 + i * 0.1);
+    });
+    if (heroMedia) tl.from(heroMedia, { y: 18, opacity: 0, scale: 0.97, duration: 1 }, 0.15);
+  }
+
   // ============ ATMOSPHERE: SCROLL-REACTIVE RECTANGLE FIELD (GSAP) ============
   const rectField = document.getElementById("rect-field");
   if (rectField && window.gsap && window.ScrollTrigger) {
     gsap.registerPlugin(ScrollTrigger);
 
-    const RECT_COLORS = ["#3b82f6", "#f59e0b", "#3FCB93", "#6366f1", "#f97316", "#0ea5e9"];
+    // Colors are read from the live design tokens (accent / gold / ink-faint)
+    // instead of a hardcoded rainbow, so the atmosphere always matches
+    // whichever theme and accent the rest of the page is using.
+    function getPaletteColors() {
+      const styles = getComputedStyle(html);
+      const read = (name, fallback) => {
+        const value = styles.getPropertyValue(name);
+        return value && value.trim() ? value.trim() : fallback;
+      };
+      return [
+        read("--accent", "#1B7A57"),
+        read("--gold", "#A9791F"),
+        read("--ink-faint", "#8A908D"),
+        read("--accent", "#1B7A57")
+      ];
+    }
+
     let rectTriggers = [];
 
     function buildRectField() {
@@ -117,6 +229,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const isMobile = window.innerWidth < 768;
       const count = isMobile ? 13 : 24;
       const cols = isMobile ? 4 : 7;
+      const colors = getPaletteColors();
 
       for (let i = 0; i < count; i++) {
         const el = document.createElement("div");
@@ -130,7 +243,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const top = Math.random() * 92;
         const startRadius = Math.random() > 0.5 ? "50%" : "6%";
         const endRadius = startRadius === "50%" ? "6%" : "50%";
-        const color = RECT_COLORS[i % RECT_COLORS.length];
+        const color = colors[i % colors.length];
         const filled = Math.random() > 0.4;
 
         el.style.width = w + "px";
@@ -182,6 +295,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
+    rebuildAtmosphere = buildRectField;
     buildRectField();
 
     let resizeTimer;
@@ -276,6 +390,35 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }, { threshold: 0.4 });
     statEls.forEach((el) => statObserver.observe(el));
+  }
+
+  // ============ PROJECT CARD IMAGE PARALLAX ============
+  // Subtle cursor-follow drift on the project thumbnail. Uses the same
+  // useMotionFX gate (and .has-motion-fx class) as the cursor and the
+  // magnetic buttons, so the CSS hover-scale hand-off to GSAP stays
+  // consistent across all three effects.
+  if (useMotionFX) {
+    document.querySelectorAll(".project-media").forEach((media) => {
+      const img = media.querySelector("img");
+      if (!img) return;
+      const moveX = gsap.quickTo(img, "x", { duration: 0.5, ease: "power3.out" });
+      const moveY = gsap.quickTo(img, "y", { duration: 0.5, ease: "power3.out" });
+      const moveScale = gsap.quickTo(img, "scale", { duration: 0.4, ease: "power3.out" });
+
+      media.addEventListener("pointerenter", () => moveScale(1.035));
+      media.addEventListener("pointermove", (e) => {
+        const rect = media.getBoundingClientRect();
+        const relX = (e.clientX - rect.left) / rect.width - 0.5;
+        const relY = (e.clientY - rect.top) / rect.height - 0.5;
+        moveX(relX * 16);
+        moveY(relY * 12);
+      });
+      media.addEventListener("pointerleave", () => {
+        moveX(0);
+        moveY(0);
+        moveScale(1);
+      });
+    });
   }
 
   // ============ FLOATING QUICK-CONTACT ============
