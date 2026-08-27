@@ -158,10 +158,13 @@ ul{margin:0;padding:0;list-style:none;}
 .section-head h2{font-size:clamp(26px,3.2vw,36px);}
 /* Ink-wipe reveal: the heading fills in left-to-right like ink laid
    across paper, instead of the generic fade every other [data-reveal]
-   element uses. Selector is deliberately more specific than the plain
-   [data-reveal] rule below so it wins regardless of source order. */
-.section-head h2[data-reveal]{opacity:1;transform:none;clip-path:inset(0 100% 0 0);transition:clip-path .9s var(--ease);}
-.section-head h2[data-reveal].in{clip-path:inset(0 0 0 0);}
+   element uses. [data-reveal] lives on the wrapper (which the generic
+   fade rule also applies to, fine) rather than the h2 itself: an
+   IntersectionObserver target that is itself clipped to zero visible
+   area via clip-path is permanently reported as non-intersecting in
+   Chrome, so observing the clipped element directly can never fire. */
+.section-head[data-reveal] h2{clip-path:inset(0 100% 0 0);transition:clip-path .9s var(--ease);}
+.section-head[data-reveal].in h2{clip-path:inset(0 0 0 0);}
 .section-lede{color:var(--ink-soft);font-size:16px;max-width:60ch;line-height:1.65;margin-top:16px;}
 
 .section{padding:104px 0;border-top:1px solid var(--line);}
@@ -489,6 +492,6 @@ a.contact-channel:hover{background:var(--surface-2);}
   html{scroll-behavior:auto;}
   *{transition-duration:.01ms !important;animation-duration:.01ms !important;transition-delay:0ms !important;}
   [data-reveal]{opacity:1;transform:none;}
-  .section-head h2[data-reveal]{clip-path:none;}
+  .section-head[data-reveal] h2{clip-path:none;}
   .grain{display:none;}
 }
