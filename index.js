@@ -94,9 +94,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const reducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const hasFinePointer = window.matchMedia && window.matchMedia("(pointer: fine)").matches;
   // Gate for every effect below that drives transform via GSAP on pointer
-  // movement (magnetic buttons, image parallax, custom cursor). Kept as
-  // one flag + one body class so they all switch on/off together and the
-  // CSS transition hand-offs in index.css stay in sync with the JS.
+  // movement (image parallax, custom cursor). Kept as one flag + one body
+  // class so they switch on/off together and the CSS transition hand-offs
+  // in index.css stay in sync with the JS.
   const useMotionFX = Boolean(window.gsap) && hasFinePointer && !reducedMotion;
   if (useMotionFX) document.body.classList.add("has-motion-fx");
 
@@ -137,22 +137,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // ============ MAGNETIC BUTTONS ============
-  if (useMotionFX) {
-    document.querySelectorAll(".btn").forEach((btn) => {
-      const moveX = gsap.quickTo(btn, "x", { duration: 0.4, ease: "power3.out" });
-      const moveY = gsap.quickTo(btn, "y", { duration: 0.4, ease: "power3.out" });
-      btn.addEventListener("pointermove", (e) => {
-        const rect = btn.getBoundingClientRect();
-        moveX((e.clientX - rect.left - rect.width / 2) * 0.35);
-        moveY((e.clientY - rect.top - rect.height / 2) * 0.35);
-      });
-      btn.addEventListener("pointerleave", () => {
-        moveX(0);
-        moveY(0);
-      });
-    });
-  }
 
   // ============ HERO ENTRANCE (GSAP) ============
   // The rest of the page reveals on scroll; the hero is visible on
@@ -394,9 +378,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ============ PROJECT CARD IMAGE PARALLAX ============
   // Subtle cursor-follow drift on the project thumbnail. Uses the same
-  // useMotionFX gate (and .has-motion-fx class) as the cursor and the
-  // magnetic buttons, so the CSS hover-scale hand-off to GSAP stays
-  // consistent across all three effects.
+  // useMotionFX gate (and .has-motion-fx class) as the custom cursor,
+  // so the CSS hover-scale hand-off to GSAP stays consistent.
   if (useMotionFX) {
     document.querySelectorAll(".project-media").forEach((media) => {
       const img = media.querySelector("img");

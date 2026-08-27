@@ -177,10 +177,6 @@ ul{margin:0;padding:0;list-style:none;}
   line-height:1;
 }
 .btn:hover{transform:translateY(-1px);}
-/* Magnetic buttons drive transform via GSAP every frame while the
-   pointer is near; the CSS transform transition would otherwise
-   fight that and stutter, so it's dropped once JS effects are live. */
-.has-motion-fx .btn{transition:box-shadow .18s var(--ease),background .2s var(--ease),border-color .2s var(--ease);}
 .btn-primary{background:var(--ink);color:var(--bg);}
 :root[data-theme="dark"] .btn-primary{background:var(--accent);color:var(--on-accent);}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn-primary{background:var(--accent);color:var(--on-accent);}}
